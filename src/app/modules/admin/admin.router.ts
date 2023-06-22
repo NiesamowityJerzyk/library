@@ -2,18 +2,23 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
 import { NoAuthGuard } from 'src/app/core/guards/no-auth.guard';
-import { AuthComponent } from 'src/app/modules/auth/auth.component';
 import { LoginComponent } from 'src/app/modules/auth/pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
+import { AdminComponent } from './admin.component';
+import { UsersComponent } from './pages/users/users.component';
+import { BooksComponent } from '../user/pages/books/books.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AuthComponent,
+    component: AdminComponent,
     children: [
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
-      { path: '**', redirectTo: '/auth/login' },
+      { path: 'users', component: UsersComponent },
+      {
+        path: 'books',
+        component: BooksComponent,
+        data: { pageName: 'Books' },
+      },
+      { path: '**', redirectTo: '/admin/users' },
       // { path: '**', redirectTo: '/start' },
     ],
   },
@@ -23,4 +28,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   providers: [NoAuthGuard, AuthGuard],
 })
-export class AuthRouter {}
+export class AdminRouter {}

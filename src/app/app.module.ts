@@ -13,6 +13,7 @@ import { NgxLoaderIndicatorModule } from 'ngx-loader-indicator';
 import { AuthState } from './modules/auth/store/state';
 import { environment } from 'src/environments/environment';
 import { HttpCacheInterceptorModule } from '@ngneat/cashew';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { HttpCacheInterceptorModule } from '@ngneat/cashew';
     BrowserModule,
     AppRouter,
     FormsModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     HttpCacheInterceptorModule.forRoot(),
     HotToastModule.forRoot({

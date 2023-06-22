@@ -5,9 +5,11 @@ import { RouterModule } from '@angular/router';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { AppMaterialModule } from '../app.material.module';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [NavbarComponent, ButtonComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -21,6 +23,8 @@ import { AppMaterialModule } from '../app.material.module';
     AppMaterialModule,
     ReactiveFormsModule,
     RouterModule,
+    NavbarComponent,
+    ButtonComponent,
   ],
 })
 export class SharedModule {}

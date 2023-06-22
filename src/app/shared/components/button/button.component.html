@@ -1,0 +1,38 @@
+<button
+  [disabled]="disabled"
+  class="relative w-full h-full flex items-center justify-center focus:outline-none font-bold rounded-lg"
+  [ngClass]="{
+    'text-white':
+      (variant === 'default' ||
+        variant === 'main' ||
+        variant === 'gray' ||
+        variant === 'red' ||
+        variant === 'orange') &&
+      !disabled,
+    'bg-orange-300': variant === 'orange' && !disabled,
+    'bg-gradient-to-r from-[#00b0dc] via-80% to-[#12d3b2]':
+      variant === 'default' && !disabled,
+    'bg-main': variant === 'main' && !disabled,
+    'text-main bg-white': variant === 'white' && !disabled,
+    'bg-[#9E9E9E]': variant === 'gray' && !disabled,
+    'bg-[#FF005C]': variant === 'red' && !disabled,
+    'text-xs md:text-sm xl:text-base py-2.5 px-5': size === 'default',
+    'text-xs py-2 px-3': size === 'small',
+    'text-main': variant === 'outline' && !disabled,
+    'bg-white-main': variant === 'outline' && !disabled,
+    'border-main': variant === 'outline' && !disabled,
+    'border-2': variant === 'outline' && !disabled,
+    'bg-[#ccc]': disabled
+  }"
+  [style.minWidth.px]="minWidth"
+>
+  <mat-icon *ngIf="isIcon" [svgIcon]="iconName" class="mr-2.5"></mat-icon>
+  <ng-content></ng-content>
+
+  <div
+    *ngIf="credits"
+    class="absolute h-6 top-2.5 right-2 text-white bg-[#00A0AE] text-sm rounded px-1 pt-0.5"
+  >
+    {{ credits }}
+  </div>
+</button>

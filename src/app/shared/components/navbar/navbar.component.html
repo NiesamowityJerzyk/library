@@ -1,0 +1,23 @@
+<div class="flex items-center justify-between p-4 bg-black text-white">
+  <div>Library</div>
+
+  <div class="flex items-center gap-8">
+    <p
+      class="cursor-pointer"
+      [routerLink]="role === 'user' ? '/user/books' : '/admin/books'"
+    >
+      Książki
+    </p>
+    <p class="cursor-pointer" *ngIf="role === 'user'">Rezerwacje</p>
+    <p class="cursor-pointer" *ngIf="role === 'user'">Ranking</p>
+    <p
+      class="cursor-pointer"
+      *ngIf="role === 'admin'"
+      routerLink="/admin/users"
+    >
+      Użytkownicy
+    </p>
+  </div>
+
+  <div>{{ role === "admin" ? "Administrator" : "Czytelnik" }}</div>
+</div>

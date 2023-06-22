@@ -11,6 +11,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^16.0.0",
+    "@angular/cdk": "^15.2.8",
     "@angular/common": "^16.0.0",
     "@angular/compiler": "^16.0.0",
     "@angular/core": "^16.0.0",
@@ -19,16 +20,16 @@
     "@angular/platform-browser": "^16.0.0",
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.13.0",
     "@ngneat/bind-query-params": "^5.0.0",
     "@ngneat/cashew": "^3.0.0",
     "@ngneat/hot-toast": "^5.0.1",
+    "@ngneat/input-mask": "^5.2.0",
+    "@ngxs/store": "^3.8.0",
     "ngx-loader-indicator": "^10.0.0",
     "ngxs-reset-plugin": "^3.0.0",
-    "@ngneat/input-mask": "^5.2.0",
-    "@ngxs/store": "^3.8.0"
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.13.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.0.1",
