@@ -10,6 +10,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { finalize, from, switchMap } from 'rxjs';
 import { AuthService } from '../../store/service';
 import { email } from 'src/app/utils/validators';
+import { UserRolesEnum } from '../../store/types';
 
 @Component({
   selector: 'app-login',
@@ -19,11 +20,11 @@ export class LoginComponent {
   public isSubmitting = false;
   public showPasswordScreen = false;
   public form: UntypedFormGroup = this.fb.group({
-    email: [null, [Validators.required, Validators.maxLength(256), email]],
-    password: [
-      null,
-      [Validators.required, Validators.maxLength(64), Validators.minLength(8)],
+    email: [
+      'patryk@grzela.pl',
+      [Validators.required, Validators.maxLength(256), email],
     ],
+    password: ['admin', [Validators.required, Validators.maxLength(64)]],
   });
   public checkboxForm: UntypedFormGroup = this.fb.group({
     isRemember: [false],
@@ -36,10 +37,26 @@ export class LoginComponent {
     private toast: HotToastService
   ) {}
 
+  ngOnInit() {
+    this.authService.getUsers().subscribe((val) => {
+      console.log(val);
+    });
+  }
+
   public submitForm(): void {
     // if (this.form.invalid) {
     //   this.form.markAllAsTouched();
     //   return;
     // }
+    console.log(this.form.value);
+
+    this.authService.login(this.form.value).subscribe((val) => {
+      if (val.roleId === UserRolesEnum.ADMIN) {
+        this.router.navigate(['/admin/users']);
+      } else if (val.roleId === UserRolesEnum.LIBRARIAN) {
+        this.router.navigate(['/user/books']);
+      } else if (val.roleId === UserRolesEnum.READER) {
+      }
+    });
   }
 }

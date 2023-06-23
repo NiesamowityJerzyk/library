@@ -10,22 +10,32 @@ import { TokenService } from '../services/token.service';
 @Injectable()
 export class AuthGuard implements CanActivate {
   @Select(AuthState.user) user$!: Observable<IUser>;
-  constructor(private router: Router, private tokenService: TokenService, private store: Store) {}
+  constructor(
+    private router: Router,
+    private tokenService: TokenService,
+    private store: Store
+  ) {}
 
   public canActivate(): Observable<boolean> {
     const token = this.tokenService.getToken();
     if (token) {
-      return this.store.select(AuthState.user).pipe(
-        filter<any | null>(Boolean),
-        take(1),
-        map((user: any | null) => {
-          if (user) {
-            return true;
-          }
-          this.router.navigateByUrl('/auth');
-          return false;
-        }),
-      );
+      // console.log(token);
+
+      // this.store.select(AuthState.user).subscribe((val) => {
+      //   console.log(val);
+      // });
+      // return this.store.select(AuthState.user).pipe(
+      //   filter<any | null>(Boolean),
+      //   take(1),
+      //   map((user: any | null) => {
+      //     if (user) {
+      //       return true;
+      //     }
+      //     this.router.navigateByUrl('/auth');
+      //     return false;
+      //   })
+      // );
+      return of(true);
     }
     this.router.navigateByUrl('/auth');
     return of(false);

@@ -7,15 +7,17 @@ import { PortalModule } from '@angular/cdk/portal';
 import { AppMaterialModule } from '../app.material.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ButtonComponent } from './components/button/button.component';
+import { PopoverComponent } from './components/popover/popover.component';
 
 @NgModule({
-  declarations: [NavbarComponent, ButtonComponent],
+  declarations: [NavbarComponent, ButtonComponent, PopoverComponent],
   imports: [
     CommonModule,
     FormsModule,
     AppMaterialModule,
     ReactiveFormsModule,
     RouterModule,
+    PortalModule,
   ],
   exports: [
     CommonModule,
@@ -25,6 +27,7 @@ import { ButtonComponent } from './components/button/button.component';
     RouterModule,
     NavbarComponent,
     ButtonComponent,
+    PopoverComponent,
   ],
 })
 export class SharedModule {}

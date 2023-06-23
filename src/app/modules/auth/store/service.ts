@@ -21,35 +21,41 @@ export class AuthService {
     private zone: NgZone
   ) {}
 
-  public fetchProfile(): Observable<IUser> {
-    return this.apiService.get(`/user/me`).pipe(
+  public fetchProfile(id: number): Observable<IUser> {
+    return this.apiService.get(`/api/user/${id}`).pipe(
       tap((data: IUser) => {
+        console.log(data);
+
         this.store.dispatch(new SetUser(data));
       })
     );
   }
 
-  public logout(): Observable<boolean> {
-    const refreshToken = this.tokenService.getRefreshToken();
-    this.tokenService.removeToken();
-    this.tokenService.removeRefreshToken();
-    this.manager.clear();
-    this.store
-      .dispatch(new StateResetAll())
-      .subscribe(() => this.zone.run(() => this.router.navigateByUrl('/auth')));
-    return this.apiService.post('/auth/logout', { refreshToken });
-  }
-
   public login(data: ILogin): Observable<IUser> {
-    return this.apiService.post('/auth/login', data).pipe(
+    return this.apiService.post('/api/auth', data).pipe(
       switchMap((data: IResponseUser) => {
-        this.tokenService.saveToken(data.token);
-        this.tokenService.saveRefreshToken(data.refreshToken);
-        // this.store.dispatch(new SetUser(data.user));
-        // return of(data);
-        return this.fetchProfile();
+        console.log(data);
+
+        this.tokenService.saveToken(data.userToken);
+        // this.tokenService.saveRefreshToken(data.refreshToken);
+        return this.fetchProfile(data.userId);
       })
     );
+  }
+
+  public getUsers(): Observable<IUser> {
+    return this.apiService.get(`/api/user`).pipe(
+      tap((data: IUser) => {
+        console.log(data);
+
+        // this.store.dispatch(new SetUser(data));
+      })
+    );
+  }
+
+  public logout(): void {
+    this.tokenService.removeToken();
+    this.router.navigate(['/auth/login']);
   }
 
   public refreshToken(refreshToken: string): Observable<IAuthTokens> {

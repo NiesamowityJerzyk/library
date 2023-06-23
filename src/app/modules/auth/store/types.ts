@@ -1,27 +1,21 @@
+export enum UserRolesEnum {
+  ADMIN = 1,
+  LIBRARIAN = 2,
+  READER = 3,
+}
+
 export interface IUser {
-  id: number;
   email: string;
-  createdAt: string;
-  updatedAt: string;
-  role: string;
   firstName: string;
   lastName: string;
-  phoneNumber: string;
-  avatarUrl: string;
-  stripeCustomerId: string;
-  stripeSubscriptionId: string;
-  subscribedTo: Date;
-  stripeSubscriptionCredits: number;
-  stripeMaxSubscriptionCredits: number;
-  stripeAdditionalCredits: number;
-  facebookAccessToken: string;
-  facebookAccessTokenExpirationDate: Date;
-  facebookRefreshAccessTokenRetries: number;
+  password: string;
+  roleId: number;
+  userID: number;
 }
 
 export interface IResponseUser {
-  user: IUser;
-  token: string;
+  userId: number;
+  userToken: string;
   refreshToken: string;
 }
 
@@ -37,5 +31,5 @@ export interface IAuthToken {
 export interface ILogin {
   email: string;
   password: string;
-  betaTestToken: string;
+  betaTestToken?: string;
 }

@@ -19,5 +19,49 @@
     </p>
   </div>
 
-  <div>{{ role === "admin" ? "Administrator" : "Czytelnik" }}</div>
+  <div class="flex items-center gap-2">
+    <!-- <div (click)="logout()">Wyloguj</div> -->
+
+    <div>
+      {{ role === "admin" ? "Administrator" : "Czytelnik" }}
+    </div>
+    <!-- 
+    <div
+      #popoverRef
+      class="rounded-full w-10 h-10 bg-grey-100 cursor-pointer relative"
+      (click)="popover.open()"
+    ></div> -->
+
+    <div class="relative">
+      <div
+        (click)="togglePopover()"
+        class="rounded-full w-10 h-10 bg-grey-100 cursor-pointer relative"
+      ></div>
+
+      <div
+        [ngClass]="{
+        '!block': popoverOpen,
+      }"
+        class="hidden bg-grey-300 p-2 w-[230px] absolute top-[120%] right-0 rounded-lg"
+      >
+        <div
+          (click)="logout()"
+          class="flex items-center gap-2 hover:bg-grey-500 hover:text-main font-medium rounded-lg cursor-pointer p-2"
+        >
+          <div class="pt-1">Sign out</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- <app-popover [reference]="popoverRef" #popover width="230px">
+  <div class="bg-white p-2">
+    <div
+      (click)="logout()"
+      class="flex items-center gap-2 hover:bg-[#e7f8fc] hover:text-main font-medium rounded-lg cursor-pointer p-2"
+    >
+      <div class="pt-1">Sign out</div>
+    </div>
+  </div>
+</app-popover> -->

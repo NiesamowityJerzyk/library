@@ -1,4 +1,4 @@
-import { State, Action, StateContext, Selector } from '@ngxs/store';
+import { State, Action, StateContext, Selector, Store } from '@ngxs/store';
 import { Login, SetUser } from './actions';
 import { Injectable } from '@angular/core';
 import { IUser } from 'src/app/modules/auth/store/types';
@@ -31,7 +31,8 @@ export class AuthState {
 
   constructor(
     private authService: AuthService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private store: Store
   ) {}
 
   ngxsOnInit(ctx: StateContext<IAuthState>): void {
@@ -46,6 +47,11 @@ export class AuthState {
 
   @Action(SetUser)
   public SetUser(ctx: StateContext<IAuthState>, action: SetUser): void {
+    console.log(action);
+
     ctx.patchState({ user: action.user });
+    this.store.select(AuthState.user).subscribe((val) => {
+      console.log(val);
+    });
   }
 }
