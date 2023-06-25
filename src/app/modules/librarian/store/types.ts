@@ -9,3 +9,8 @@ export interface IBook {
   authorFirstName: string;
   authorLastName: string;
 }
+
+export interface IPublisher {
+  publisherID: number;
+  publisherName: string;
+}

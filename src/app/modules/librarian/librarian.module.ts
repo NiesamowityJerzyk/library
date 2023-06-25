@@ -6,6 +6,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { LibrarianComponent } from './librarian.component';
 import { AddBookComponent } from './pages/add-book/add-book.component';
 import { PublishersComponent } from './pages/publishers/publishers.component';
+import { AddPublisherComponent } from './pages/add-publisher/add-publisher.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { PublishersComponent } from './pages/publishers/publishers.component';
     BooksComponent,
     AddBookComponent,
     PublishersComponent,
+    AddPublisherComponent,
   ],
   imports: [CommonModule, SharedModule, LibrarianRouter],
 })

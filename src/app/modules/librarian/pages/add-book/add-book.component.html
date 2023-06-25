@@ -15,11 +15,6 @@
       />
     </mat-form-field>
 
-    <!-- <mat-form-field class="w-full">
-      <mat-label>Publisher</mat-label>
-      <input matInput formControlName="publisher" placeholder="Publisher" />
-    </mat-form-field> -->
-
     <mat-form-field class="w-full">
       <mat-label>Number of copies</mat-label>
       <input
@@ -29,17 +24,17 @@
       />
     </mat-form-field>
 
-    <!-- <mat-form-field class="w-full">
-      <mat-label>Role</mat-label>
-      <mat-select formControlName="roleId">
+    <mat-form-field class="w-full">
+      <mat-label>Wydawnictwo</mat-label>
+      <mat-select formControlName="publisher">
         <mat-option
-          *ngFor="let role of constsService.roles"
-          [value]="role.value"
+          *ngFor="let publisher of publishersOptions"
+          [value]="publisher.value"
         >
-          {{ role.title }}
+          {{ publisher.title }}
         </mat-option>
       </mat-select>
-    </mat-form-field> -->
+    </mat-form-field>
   </div>
   <!-- <app-button>Dodaj</app-button> -->
 

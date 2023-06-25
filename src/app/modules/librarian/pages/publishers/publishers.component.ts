@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LibrarianService } from '../../store/service';
-import { IBook } from '../../store/types';
+import { IBook, IPublisher } from '../../store/types';
 
 @Component({
   selector: 'app-publishers',
@@ -9,7 +9,7 @@ import { IBook } from '../../store/types';
   styleUrls: ['./publishers.component.scss'],
 })
 export class PublishersComponent {
-  public books!: IBook[];
+  public publishers!: IPublisher[];
   constructor(
     public router: Router,
     private librarianService: LibrarianService
@@ -18,9 +18,9 @@ export class PublishersComponent {
   ngOnInit() {
     console.log('elo');
 
-    // this.librarianService.getBooks().subscribe((val) => {
-    //   console.log(val);
-    //   this.books = val;
-    // });
+    this.librarianService.getPublishers().subscribe((val) => {
+      console.log(val);
+      this.publishers = val;
+    });
   }
 }

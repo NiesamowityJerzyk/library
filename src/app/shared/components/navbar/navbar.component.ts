@@ -3,7 +3,7 @@ import { Store } from '@ngxs/store';
 import { TokenService } from 'src/app/core/services/token.service';
 import { AuthService } from 'src/app/modules/auth/store/service';
 import { AuthState } from 'src/app/modules/auth/store/state';
-import { UserRolesEnum } from 'src/app/modules/auth/store/types';
+import { IUser, UserRolesEnum } from 'src/app/modules/auth/store/types';
 
 @Component({
   selector: 'app-navbar',
@@ -12,6 +12,7 @@ import { UserRolesEnum } from 'src/app/modules/auth/store/types';
 export class NavbarComponent {
   @Input() public text!: string;
   public role!: string;
+  public username!: string;
   public popoverOpen = false;
   constructor(
     private authService: AuthService,
@@ -23,7 +24,8 @@ export class NavbarComponent {
 
   ngOnInit() {
     this.role = UserRolesEnum[this.tokenService.getRole() as any];
-    console.log(this.tokenService.getRole());
+    this.username = UserRolesEnum[this.tokenService.getUsername() as any];
+    console.log(this.username);
   }
   public togglePopover(): void {
     this.popoverOpen = !this.popoverOpen;

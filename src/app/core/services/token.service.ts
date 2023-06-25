@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 export const ROLE = 'role';
+export const USERNAME = 'username';
 export const TOKEN = 'token';
 export const REFRESH_TOKEN = 'refreshToken';
 
@@ -12,6 +13,11 @@ export class TokenService {
   public saveRole(role: any): void {
     localStorage.setItem(ROLE, role);
   }
+
+  public saveUsername(username: string): void {
+    localStorage.setItem(USERNAME, username);
+  }
+
   public saveRefreshToken(token: string): void {
     localStorage.setItem(REFRESH_TOKEN, token);
   }
@@ -22,6 +28,10 @@ export class TokenService {
 
   public getRole(): string | null {
     return localStorage.getItem(ROLE);
+  }
+
+  public getUsername(): string | null {
+    return localStorage.getItem(USERNAME);
   }
 
   public getRefreshToken(): string | null {

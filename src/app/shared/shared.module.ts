@@ -9,6 +9,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ButtonComponent } from './components/button/button.component';
 import { PopoverComponent } from './components/popover/popover.component';
 import { BookCardComponent } from './components/book-card/book-card.component';
+import { PublisherCardComponent } from './components/publisher-card/publisher-card.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { BookCardComponent } from './components/book-card/book-card.component';
     ButtonComponent,
     PopoverComponent,
     BookCardComponent,
+    PublisherCardComponent,
   ],
   imports: [
     CommonModule,
@@ -35,6 +37,7 @@ import { BookCardComponent } from './components/book-card/book-card.component';
     ButtonComponent,
     PopoverComponent,
     BookCardComponent,
+    PublisherCardComponent,
   ],
 })
 export class SharedModule {}

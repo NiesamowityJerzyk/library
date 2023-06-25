@@ -39,6 +39,7 @@ export class AuthService {
 
         this.tokenService.saveToken(data.userToken);
         this.tokenService.saveRole(data.roleId);
+        // this.tokenService.saveUsername(data);
         // this.tokenService.saveRefreshToken(data.refreshToken);
         return this.fetchProfile(data.userId);
       })

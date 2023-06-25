@@ -6,6 +6,8 @@ import { LoginComponent } from 'src/app/modules/auth/pages/login/login.component
 import { LibrarianComponent } from './librarian.component';
 import { BooksComponent } from './pages/books/books.component';
 import { AddBookComponent } from './pages/add-book/add-book.component';
+import { PublishersComponent } from './pages/publishers/publishers.component';
+import { AddPublisherComponent } from './pages/add-publisher/add-publisher.component';
 
 const routes: Routes = [
   {
@@ -19,9 +21,17 @@ const routes: Routes = [
         data: { pageName: 'Books' },
       },
       {
+        path: 'publishers',
+        component: PublishersComponent,
+      },
+      {
         path: 'add-book',
         component: AddBookComponent,
         data: { pageName: 'Add book' },
+      },
+      {
+        path: 'add-publisher',
+        component: AddPublisherComponent,
       },
       { path: '**', redirectTo: '/librarian/books' },
       // { path: '**', redirectTo: '/start' },

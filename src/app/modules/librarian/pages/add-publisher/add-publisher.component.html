@@ -1,0 +1,22 @@
+<div class="text-2xl font-medium mb-10">Dodaj wydawnictwo</div>
+
+<form [formGroup]="form" (ngSubmit)="addPublisher()">
+  <div class="grid grid-cols-2 gap-5 mb-5">
+    <mat-form-field class="w-full">
+      <mat-label>Wydawnictwo</mat-label>
+      <input
+        matInput
+        formControlName="publisherName"
+        placeholder="Nazwa wydawnictwa"
+      />
+    </mat-form-field>
+  </div>
+  <button
+    mat-raised-button
+    class="w-full"
+    [disabled]="form.invalid"
+    color="primary"
+  >
+    Dodaj wydawnictwo
+  </button>
+</form>

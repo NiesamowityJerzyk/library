@@ -5,9 +5,16 @@
     <div
       *ngIf="role === 'LIBRARIAN' || role === 'READER'"
       class="cursor-pointer"
-      [routerLink]="role === 'READER' ? '/user/books' : '/admin/books'"
+      [routerLink]="role === 'READER' ? '/user/books' : '/librarian/books'"
     >
       Książki
+    </div>
+    <div
+      *ngIf="role === 'LIBRARIAN'"
+      class="cursor-pointer"
+      [routerLink]="'/librarian/publishers'"
+    >
+      wydawnictwa
     </div>
     <div class="cursor-pointer" *ngIf="role === 'READER'">Rezerwacje</div>
     <div

@@ -38,9 +38,9 @@ export class LoginComponent {
   ) {}
 
   ngOnInit() {
-    // this.authService.getUsers().subscribe((val) => {
-    //   console.log(val);
-    // });
+    this.authService.getUsers().subscribe((val) => {
+      console.log(val);
+    });
   }
 
   public submitForm(): void {
