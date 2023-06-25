@@ -8,9 +8,15 @@ import { AppMaterialModule } from '../app.material.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ButtonComponent } from './components/button/button.component';
 import { PopoverComponent } from './components/popover/popover.component';
+import { BookCardComponent } from './components/book-card/book-card.component';
 
 @NgModule({
-  declarations: [NavbarComponent, ButtonComponent, PopoverComponent],
+  declarations: [
+    NavbarComponent,
+    ButtonComponent,
+    PopoverComponent,
+    BookCardComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -28,6 +34,7 @@ import { PopoverComponent } from './components/popover/popover.component';
     NavbarComponent,
     ButtonComponent,
     PopoverComponent,
+    BookCardComponent,
   ],
 })
 export class SharedModule {}

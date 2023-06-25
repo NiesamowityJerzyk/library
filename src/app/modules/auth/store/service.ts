@@ -20,12 +20,13 @@ export class AuthService {
     private router: Router,
     private zone: NgZone
   ) {}
+  public getCurrentUser(token: number): Observable<IUser> {
+    return this.apiService.get(`/api/auth/${token}`);
+  }
 
   public fetchProfile(id: number): Observable<IUser> {
     return this.apiService.get(`/api/user/${id}`).pipe(
       tap((data: IUser) => {
-        console.log(data);
-
         this.store.dispatch(new SetUser(data));
       })
     );
@@ -37,6 +38,7 @@ export class AuthService {
         console.log(data);
 
         this.tokenService.saveToken(data.userToken);
+        this.tokenService.saveRole(data.roleId);
         // this.tokenService.saveRefreshToken(data.refreshToken);
         return this.fetchProfile(data.userId);
       })
@@ -46,8 +48,6 @@ export class AuthService {
   public getUsers(): Observable<IUser> {
     return this.apiService.get(`/api/user`).pipe(
       tap((data: IUser) => {
-        console.log(data);
-
         // this.store.dispatch(new SetUser(data));
       })
     );
@@ -55,7 +55,10 @@ export class AuthService {
 
   public logout(): void {
     this.tokenService.removeToken();
-    this.router.navigate(['/auth/login']);
+    this.store
+      .dispatch(new StateResetAll())
+      .subscribe(() => this.zone.run(() => this.router.navigateByUrl('/auth')));
+    // this.router.navigate(['/auth/login']);
   }
 
   public refreshToken(refreshToken: string): Observable<IAuthTokens> {

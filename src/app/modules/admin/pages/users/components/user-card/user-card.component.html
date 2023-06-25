@@ -1,0 +1,21 @@
+<div class="flex justify-between py-5 px-8 bg-grey-200 rounded-xl">
+  <div class="flex items-center gap-16">
+    <!-- <div class="w-[60px] h-[70px] border border-dark"></div> -->
+    <div class="flex flex-col gap-4">
+      <div>Imię</div>
+      <div>{{ user.firstName }}</div>
+    </div>
+    <div class="flex flex-col gap-4">
+      <div>Nazwisko</div>
+      <div>{{ user.lastName }}</div>
+    </div>
+    <div class="flex flex-col gap-4">
+      <div>Email</div>
+      <div>{{ user.email }}</div>
+    </div>
+  </div>
+  <div class="flex itesm-center gap-2">
+    <app-button (click)="edit.emit()">Edytuj</app-button>
+    <app-button (click)="remove.emit()" variant="red">Usuń</app-button>
+  </div>
+</div>

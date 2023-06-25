@@ -1,0 +1,54 @@
+<div class="text-2xl font-medium mb-10">Dodaj Książkę</div>
+
+<form [formGroup]="form" (ngSubmit)="addBook()">
+  <div class="grid grid-cols-2 gap-5 mb-5">
+    <mat-form-field class="w-full">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" placeholder="Title" />
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>Release year</mat-label>
+      <input
+        matInput
+        formControlName="releaseYear"
+        placeholder="Release year"
+      />
+    </mat-form-field>
+
+    <!-- <mat-form-field class="w-full">
+      <mat-label>Publisher</mat-label>
+      <input matInput formControlName="publisher" placeholder="Publisher" />
+    </mat-form-field> -->
+
+    <mat-form-field class="w-full">
+      <mat-label>Number of copies</mat-label>
+      <input
+        matInput
+        formControlName="numberOfCopies"
+        placeholder="Number of copies"
+      />
+    </mat-form-field>
+
+    <!-- <mat-form-field class="w-full">
+      <mat-label>Role</mat-label>
+      <mat-select formControlName="roleId">
+        <mat-option
+          *ngFor="let role of constsService.roles"
+          [value]="role.value"
+        >
+          {{ role.title }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
+  </div>
+  <!-- <app-button>Dodaj</app-button> -->
+
+  <button
+    mat-raised-button
+    class="w-full"
+    [disabled]="form.invalid"
+    color="primary"
+  >
+    Dodaj książkę
+  </button>
+</form>

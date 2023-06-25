@@ -15,7 +15,6 @@ export interface IUser {
 
 export interface IResponseUser {
   userId: number;
-  roleId: number;
   userToken: string;
   refreshToken: string;
 }

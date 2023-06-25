@@ -1,0 +1,19 @@
+<div class="flex justify-between p-5 bg-grey-100 rounded-xl">
+  <div class="flex items-center gap-16">
+    <!-- <div class="w-[60px] h-[70px] border border-dark"></div> -->
+    <div class="flex flex-col gap-2.5">
+      <p>Title</p>
+      <p>{{ book.title }}</p>
+    </div>
+    <div class="flex flex-col gap-2.5">
+      <p>Author</p>
+      <p>John</p>
+    </div>
+    <div class="flex flex-col gap-2.5">
+      <p>Description</p>
+      <p>Lorem lorem</p>
+    </div>
+  </div>
+
+  <button *ngIf="role === 'READER'">Rezerwuj</button>
+</div>

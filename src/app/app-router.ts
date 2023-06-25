@@ -13,6 +13,13 @@ const routes: Routes = [
       import('./modules/admin/admin.module').then((m) => m.AdminModule),
   },
   {
+    path: 'librarian',
+    loadChildren: () =>
+      import('./modules/librarian/librarian.module').then(
+        (m) => m.LibrarianModule
+      ),
+  },
+  {
     path: 'user',
     loadChildren: () =>
       import('./modules/user/user.module').then((m) => m.UserModule),

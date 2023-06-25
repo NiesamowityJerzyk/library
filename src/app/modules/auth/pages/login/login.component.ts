@@ -21,10 +21,10 @@ export class LoginComponent {
   public showPasswordScreen = false;
   public form: UntypedFormGroup = this.fb.group({
     email: [
-      'patryk@grzela.pl',
+      'pracownik@gmail.com',
       [Validators.required, Validators.maxLength(256), email],
     ],
-    password: ['admin', [Validators.required, Validators.maxLength(64)]],
+    password: ['Test123!', [Validators.required, Validators.maxLength(64)]],
   });
   public checkboxForm: UntypedFormGroup = this.fb.group({
     isRemember: [false],
@@ -38,9 +38,9 @@ export class LoginComponent {
   ) {}
 
   ngOnInit() {
-    this.authService.getUsers().subscribe((val) => {
-      console.log(val);
-    });
+    // this.authService.getUsers().subscribe((val) => {
+    //   console.log(val);
+    // });
   }
 
   public submitForm(): void {
@@ -48,14 +48,14 @@ export class LoginComponent {
     //   this.form.markAllAsTouched();
     //   return;
     // }
-    console.log(this.form.value);
 
     this.authService.login(this.form.value).subscribe((val) => {
       if (val.roleId === UserRolesEnum.ADMIN) {
         this.router.navigate(['/admin/users']);
       } else if (val.roleId === UserRolesEnum.LIBRARIAN) {
-        this.router.navigate(['/user/books']);
+        this.router.navigate(['/librarian/books']);
       } else if (val.roleId === UserRolesEnum.READER) {
+        this.router.navigate(['/user/books']);
       }
     });
   }
