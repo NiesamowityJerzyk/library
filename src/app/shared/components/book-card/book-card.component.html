@@ -1,23 +1,33 @@
-<div class="flex justify-between p-5 bg-grey-100 rounded-xl">
-  <div class="flex items-center gap-16">
-    <!-- <div class="w-[60px] h-[70px] border border-dark"></div> -->
-    <div class="flex flex-col gap-2.5">
-      <p>Title</p>
+<div class="flex items-center justify-between p-5 bg-grey-100 rounded-xl">
+  <div class="flex justify-between items-center gap-16">
+    <div class="flex flex-col gap-2.5 !w-[34%]">
+      <p class="font-medium">Title</p>
       <p>{{ book.title }}</p>
     </div>
-    <div class="flex flex-col gap-2.5">
-      <p>Author</p>
+    <div class="flex flex-col gap-2.5 !w-[20%]">
+      <p class="font-medium">Author</p>
       <p>{{ book.authorFirstName }} {{ book.authorLastName }}</p>
     </div>
-    <div class="flex flex-col gap-2.5">
-      <p>Wydawnictwo</p>
+    <div class="flex flex-col gap-2.5 !w-[16%]">
+      <p class="font-medium">Wydawnictwo</p>
       <p>{{ book.publisherName }}</p>
     </div>
-    <div class="flex flex-col gap-2.5">
-      <p>Rok wydania</p>
+    <div class="flex flex-col gap-2.5 !w-[10%]">
+      <p class="font-medium">Rok wydania</p>
       <p>{{ book.releaseYear }}</p>
     </div>
   </div>
 
-  <button *ngIf="role === 'READER'">Rezerwuj</button>
+  <button
+    *ngIf="book.numberOfCopies; else noCopies"
+    mat-raised-button
+    class="w-[200px]"
+    color="primary"
+  >
+    Rezerwuj
+  </button>
+
+  <ng-template #noCopies>
+    <div class="text-base font-medium">Brak egzemplarzy</div>
+  </ng-template>
 </div>

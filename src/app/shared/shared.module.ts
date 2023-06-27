@@ -10,6 +10,10 @@ import { ButtonComponent } from './components/button/button.component';
 import { PopoverComponent } from './components/popover/popover.component';
 import { BookCardComponent } from './components/book-card/book-card.component';
 import { PublisherCardComponent } from './components/publisher-card/publisher-card.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { IconComponent } from './components/icon/icon.component';
+import { AuthorCardComponent } from './components/author-card/author-card.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +22,9 @@ import { PublisherCardComponent } from './components/publisher-card/publisher-ca
     PopoverComponent,
     BookCardComponent,
     PublisherCardComponent,
+    FooterComponent,
+    IconComponent,
+    AuthorCardComponent,
   ],
   imports: [
     CommonModule,
@@ -26,6 +33,7 @@ import { PublisherCardComponent } from './components/publisher-card/publisher-ca
     ReactiveFormsModule,
     RouterModule,
     PortalModule,
+    FontAwesomeModule,
   ],
   exports: [
     CommonModule,
@@ -38,6 +46,10 @@ import { PublisherCardComponent } from './components/publisher-card/publisher-ca
     PopoverComponent,
     BookCardComponent,
     PublisherCardComponent,
+    FooterComponent,
+    FontAwesomeModule,
+    IconComponent,
+    AuthorCardComponent,
   ],
 })
 export class SharedModule {}

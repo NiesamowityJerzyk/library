@@ -1,0 +1,16 @@
+<div class="mb-10 flex items-center justify-between">
+  <div class="text-2xl font-medium">Wypożyczenia</div>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="router.navigate(['/librarian/add-author'])"
+  >
+    Dodaj wypożyczenie
+  </button>
+</div>
+<div class="flex flex-col gap-5">
+  <app-author-card
+    *ngFor="let borrow of borrows"
+    [author]="borrow"
+  ></app-author-card>
+</div>

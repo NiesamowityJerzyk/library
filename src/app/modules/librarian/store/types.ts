@@ -14,3 +14,9 @@ export interface IPublisher {
   publisherID: number;
   publisherName: string;
 }
+export interface IAuthor {
+  authorID: number;
+  firstName: string;
+  lastName: string;
+  yearOfBirth: number;
+}

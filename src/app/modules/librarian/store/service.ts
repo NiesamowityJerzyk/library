@@ -5,7 +5,7 @@ import { Store } from '@ngxs/store';
 import { Observable, of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { ApiService } from 'src/app/core/services/api.service';
-import { IBook, IPublisher } from './types';
+import { IAuthor, IBook, IPublisher } from './types';
 
 @Injectable({ providedIn: 'root' })
 export class LibrarianService {
@@ -30,5 +30,17 @@ export class LibrarianService {
 
   public getPublishers(): Observable<IPublisher[]> {
     return this.apiService.get(`/api/publishers `);
+  }
+
+  public getAuthors(): Observable<IAuthor[]> {
+    return this.apiService.get(`/api/authors`);
+  }
+
+  public addAuthor(data: any): Observable<any> {
+    return this.apiService.post(`/api/authors`, data);
+  }
+
+  public getBorrows(): Observable<any[]> {
+    return this.apiService.get(`/api/borrows`);
   }
 }

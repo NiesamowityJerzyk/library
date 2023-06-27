@@ -1,24 +1,25 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LibrarianService } from '../../store/service';
-import { IBook } from '../../store/types';
+import { IBook, IPublisher } from '../../store/types';
 
 @Component({
-  selector: 'app-books',
-  templateUrl: './books.component.html',
-  styleUrls: ['./books.component.scss'],
+  selector: 'app-authors',
+  templateUrl: './authors.component.html',
 })
-export class BooksComponent {
-  public books!: IBook[];
+export class authorsComponent {
+  public authors!: any[];
   constructor(
     public router: Router,
     private librarianService: LibrarianService
   ) {}
 
   ngOnInit() {
-    this.librarianService.getBooks().subscribe((val) => {
+    console.log('elo');
+
+    this.librarianService.getAuthors().subscribe((val) => {
       console.log(val);
-      this.books = val;
+      this.authors = val;
     });
   }
 }

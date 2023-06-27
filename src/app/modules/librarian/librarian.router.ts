@@ -8,12 +8,15 @@ import { BooksComponent } from './pages/books/books.component';
 import { AddBookComponent } from './pages/add-book/add-book.component';
 import { PublishersComponent } from './pages/publishers/publishers.component';
 import { AddPublisherComponent } from './pages/add-publisher/add-publisher.component';
+import { AddAuthorComponent } from './pages/add-author/add-author.component';
+import { authorsComponent } from './pages/authors/authors.component';
+import { BorrowsComponent } from './pages/borrows/borrows.component';
 
 const routes: Routes = [
   {
     path: '',
     component: LibrarianComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     children: [
       {
         path: 'books',
@@ -25,9 +28,21 @@ const routes: Routes = [
         component: PublishersComponent,
       },
       {
+        path: 'authors',
+        component: authorsComponent,
+      },
+      {
+        path: 'borrows',
+        component: BorrowsComponent,
+      },
+      {
         path: 'add-book',
         component: AddBookComponent,
         data: { pageName: 'Add book' },
+      },
+      {
+        path: 'add-author',
+        component: AddAuthorComponent,
       },
       {
         path: 'add-publisher',

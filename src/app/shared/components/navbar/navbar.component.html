@@ -1,4 +1,6 @@
-<div class="flex items-center justify-between p-4 bg-black text-white">
+<div
+  class="flex items-center justify-between p-4 bg-black text-white font-medium text-base"
+>
   <div>Library</div>
 
   <div class="flex items-center gap-8">
@@ -16,6 +18,22 @@
     >
       wydawnictwa
     </div>
+    <div
+      *ngIf="role === 'LIBRARIAN'"
+      class="cursor-pointer"
+      [routerLink]="'/librarian/borrows'"
+    >
+      wypożyczenia
+    </div>
+
+    <div
+      *ngIf="role === 'LIBRARIAN'"
+      class="cursor-pointer"
+      [routerLink]="'/librarian/authors'"
+    >
+      Autorzy
+    </div>
+
     <div class="cursor-pointer" *ngIf="role === 'READER'">Rezerwacje</div>
     <div
       class="cursor-pointer"

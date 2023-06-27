@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LibrarianService } from '../../store/service';
-import { IBook, IPublisher } from '../../store/types';
+import { IAuthor, IBook, IPublisher } from '../../store/types';
 import {
   UntypedFormBuilder,
   UntypedFormGroup,
@@ -13,6 +13,7 @@ import {
   IConstOption,
 } from 'src/app/core/services/const.service';
 import { HotToastService } from '@ngneat/hot-toast';
+import { finalize, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-add-book',
@@ -20,12 +21,13 @@ import { HotToastService } from '@ngneat/hot-toast';
   styleUrls: ['./add-book.component.scss'],
 })
 export class AddBookComponent {
+  public isLoading = false;
   public form: UntypedFormGroup = this.fb.group({
     title: ['', [Validators.required, Validators.maxLength(256)]],
     releaseYear: [null, [Validators.required, Validators.maxLength(64)]],
     publisher: [null, [Validators.required, Validators.maxLength(64)]],
     numberOfCopies: [null, [Validators.required, Validators.maxLength(64)]],
-    author: [2, [Validators.required]],
+    author: [null, [Validators.required]],
   });
   constructor(
     public router: Router,
@@ -36,16 +38,28 @@ export class AddBookComponent {
   ) {}
 
   public publishersOptions!: IConstOption[];
+  public authorsOptions!: IConstOption[];
 
   ngOnInit() {
-    this.librarianService.getPublishers().subscribe((val) => {
-      console.log(val);
-      this.publishersOptions = val.map((el: IPublisher) => ({
-        title: el.publisherName,
-        value: el.publisherID,
-      }));
-      console.log(this.publishersOptions);
-    });
+    this.isLoading = true;
+    forkJoin([
+      this.librarianService.getPublishers(),
+      this.librarianService.getAuthors(),
+    ])
+      .pipe(finalize(() => (this.isLoading = false)))
+      .subscribe(([publishers, authors]) => {
+        this.publishersOptions = publishers.map((el: IPublisher) => ({
+          title: el.publisherName,
+          value: el.publisherID,
+        }));
+        console.log(this.publishersOptions);
+
+        this.authorsOptions = authors.map((el: IAuthor) => ({
+          title: el.firstName + ' ' + el.lastName,
+          value: el.authorID,
+        }));
+        console.log(this.authorsOptions);
+      });
   }
 
   public addBook(): void {

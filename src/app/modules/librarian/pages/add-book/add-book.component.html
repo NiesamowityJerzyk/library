@@ -4,23 +4,25 @@
   <div class="grid grid-cols-2 gap-5 mb-5">
     <mat-form-field class="w-full">
       <mat-label>Title</mat-label>
-      <input matInput formControlName="title" placeholder="Title" />
+      <input matInput formControlName="title" placeholder="Tytuł" />
     </mat-form-field>
     <mat-form-field class="w-full">
-      <mat-label>Release year</mat-label>
+      <mat-label>Rok wydania</mat-label>
       <input
         matInput
         formControlName="releaseYear"
-        placeholder="Release year"
+        type="number"
+        placeholder="Rok wydania"
       />
     </mat-form-field>
 
     <mat-form-field class="w-full">
-      <mat-label>Number of copies</mat-label>
+      <mat-label>Ilość kopii</mat-label>
       <input
         matInput
         formControlName="numberOfCopies"
-        placeholder="Number of copies"
+        type="number"
+        placeholder="Ilość kopii"
       />
     </mat-form-field>
 
@@ -35,6 +37,18 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Autor</mat-label>
+      <mat-select formControlName="author">
+        <mat-option
+          *ngFor="let author of authorsOptions"
+          [value]="author.value"
+        >
+          {{ author.title }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   <!-- <app-button>Dodaj</app-button> -->
 
@@ -44,6 +58,6 @@
     [disabled]="form.invalid"
     color="primary"
   >
-    Dodaj książkę
+    Dodaj
   </button>
 </form>

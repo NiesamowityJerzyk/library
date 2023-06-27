@@ -1,0 +1,16 @@
+<div class="mb-10 flex items-center justify-between">
+  <div class="text-2xl font-medium">Autorzy</div>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="router.navigate(['/librarian/add-author'])"
+  >
+    Dodaj autora
+  </button>
+</div>
+<div class="flex flex-col gap-5">
+  <app-author-card
+    *ngFor="let author of authors"
+    [author]="author"
+  ></app-author-card>
+</div>
