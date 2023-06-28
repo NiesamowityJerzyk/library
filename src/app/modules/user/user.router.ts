@@ -8,6 +8,7 @@ import { UserComponent } from './user.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { BooksComponent } from './pages/books/books.component';
 import { BookComponent } from './pages/book/book.component';
+import { BookingsComponent } from './pages/bookings/bookings.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
         path: 'books',
         component: BooksComponent,
         data: { pageName: 'Books' },
+      },
+      {
+        path: 'bookings',
+        component: BookingsComponent,
       },
       {
         path: 'books/:id',

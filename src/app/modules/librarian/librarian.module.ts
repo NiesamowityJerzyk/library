@@ -10,6 +10,7 @@ import { AddPublisherComponent } from './pages/add-publisher/add-publisher.compo
 import { AddAuthorComponent } from './pages/add-author/add-author.component';
 import { authorsComponent } from './pages/authors/authors.component';
 import { BorrowsComponent } from './pages/borrows/borrows.component';
+import { EditBorrowComponent } from './pages/edit-borrow/edit-borrow.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { BorrowsComponent } from './pages/borrows/borrows.component';
     authorsComponent,
     AddAuthorComponent,
     BorrowsComponent,
+    EditBorrowComponent,
   ],
   imports: [CommonModule, SharedModule, LibrarianRouter],
 })

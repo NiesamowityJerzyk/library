@@ -1,0 +1,26 @@
+<div class="text-2xl font-medium mb-10">Edytuj wypożyczenie</div>
+
+<form [formGroup]="form" (ngSubmit)="updateBorrow()">
+  <div class="grid grid-cols-2 gap-5 mb-5">
+    <mat-form-field>
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker" />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <!-- <app-button>Dodaj</app-button> -->
+
+  <button
+    mat-raised-button
+    class="w-full"
+    [disabled]="form.invalid"
+    color="primary"
+  >
+    Zapisz
+  </button>
+</form>

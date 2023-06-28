@@ -1,0 +1,11 @@
+<div class="mb-10 flex items-center justify-between">
+  <div class="text-2xl font-medium">Książki</div>
+</div>
+<div class="flex flex-col gap-5">
+  <!-- <app-booking-card
+    *ngFor="let booking of bookings"
+    [booking]="booking"
+  ></app-booking-card> -->
+  <app-borrow-card *ngFor="let borrow of borrows" [borrow]="borrow">
+  </app-borrow-card>
+</div>

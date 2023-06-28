@@ -25,7 +25,6 @@ export class NavbarComponent {
   ngOnInit() {
     this.role = UserRolesEnum[this.tokenService.getRole() as any];
     this.username = UserRolesEnum[this.tokenService.getUsername() as any];
-    console.log(this.username);
   }
   public togglePopover(): void {
     this.popoverOpen = !this.popoverOpen;

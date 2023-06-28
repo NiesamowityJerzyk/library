@@ -9,8 +9,9 @@
   </button>
 </div>
 <div class="flex flex-col gap-5">
-  <app-author-card
+  <app-borrow-card
     *ngFor="let borrow of borrows"
-    [author]="borrow"
-  ></app-author-card>
+    [borrow]="borrow"
+    (edit)="router.navigate(['/librarian/edit-borrow/' + borrow.borrowID])"
+  ></app-borrow-card>
 </div>

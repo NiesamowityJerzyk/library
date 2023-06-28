@@ -1,9 +1,42 @@
-<div class="flex justify-between p-5 bg-grey-100 rounded-xl">
+<div
+  class="flex items-center justify-between gap-10 p-5 bg-grey-100 rounded-xl"
+>
   <div class="flex items-center gap-16">
     <!-- <div class="w-[60px] h-[70px] border border-dark"></div> -->
     <div class="flex flex-col gap-2.5">
-      <p class="font-medium">Imie</p>
-      <!-- <p>{{ borrow.firstName }}</p> -->
+      <p class="font-medium">Tytuł książki</p>
+      <p>{{ borrow.bookTitle }}</p>
     </div>
+    <div class="flex flex-col gap-2.5">
+      <p class="font-medium">Data wypożyczenia</p>
+      <p>{{ borrow.borrowDate }}</p>
+    </div>
+    <div class="flex flex-col gap-2.5">
+      <p class="font-medium">Data oddania</p>
+      <p>{{ borrow.returnDate ? borrow.returnDate : "-" }}</p>
+    </div>
+    <div class="flex flex-col gap-2.5">
+      <p class="font-medium">Status wypożyczenia</p>
+      <p>{{ borrow.borrowStatusName }}</p>
+    </div>
+    <div class="flex flex-col gap-2.5">
+      <p class="font-medium">Status egzemplarza</p>
+      <p>{{ borrow.copyStatusName }}</p>
+    </div>
+    <div class="flex flex-col gap-2.5">
+      <p class="font-medium">Czytelnik</p>
+      <p>{{ borrow.userFirstName }} {{ borrow.userLastName }}</p>
+    </div>
+  </div>
+
+  <div class="flex-1" *ngIf="role === 'LIBRARIAN'">
+    <button
+      mat-raised-button
+      class="w-[150px]"
+      color="primary"
+      (click)="edit.emit()"
+    >
+      Edytuj
+    </button>
   </div>
 </div>

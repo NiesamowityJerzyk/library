@@ -18,16 +18,19 @@
     </div>
   </div>
 
-  <button
-    *ngIf="book.numberOfCopies; else noCopies"
-    mat-raised-button
-    class="w-[200px]"
-    color="primary"
-  >
-    Rezerwuj
-  </button>
+  <ng-container *ngIf="role === 'READER'">
+    <button
+      *ngIf="book.numberOfCopies; else noCopies"
+      mat-raised-button
+      class="w-[200px]"
+      color="primary"
+      (click)="bookClicked.emit()"
+    >
+      Rezerwuj
+    </button>
 
-  <ng-template #noCopies>
-    <div class="text-base font-medium">Brak egzemplarzy</div>
-  </ng-template>
+    <ng-template #noCopies>
+      <div class="text-base font-medium">Brak egzemplarzy</div>
+    </ng-template>
+  </ng-container>
 </div>

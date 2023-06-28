@@ -4,11 +4,11 @@ import { IUser, UserRolesEnum } from 'src/app/modules/auth/store/types';
 import { IBook } from 'src/app/modules/librarian/store/types';
 
 @Component({
-  selector: 'app-book-card',
-  templateUrl: './book-card.component.html',
+  selector: 'app-booking-card',
+  templateUrl: './booking-card.component.html',
 })
-export class BookCardComponent {
-  @Input() public book!: IBook;
+export class BookingCardComponent {
+  @Input() public booking!: any;
   @Output() public bookClicked: EventEmitter<void> = new EventEmitter();
   @Output() public remove: EventEmitter<void> = new EventEmitter();
 

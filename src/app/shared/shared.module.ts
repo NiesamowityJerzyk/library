@@ -14,6 +14,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IconComponent } from './components/icon/icon.component';
 import { AuthorCardComponent } from './components/author-card/author-card.component';
+import { BorrowCardComponent } from './components/borrow-card/borrow-card.component';
+import { BookingsComponent } from '../modules/user/pages/bookings/bookings.component';
+import { BookingCardComponent } from './components/booking-card/booking-card.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,8 @@ import { AuthorCardComponent } from './components/author-card/author-card.compon
     FooterComponent,
     IconComponent,
     AuthorCardComponent,
+    BorrowCardComponent,
+    BookingCardComponent,
   ],
   imports: [
     CommonModule,
@@ -50,6 +55,8 @@ import { AuthorCardComponent } from './components/author-card/author-card.compon
     FontAwesomeModule,
     IconComponent,
     AuthorCardComponent,
+    BorrowCardComponent,
+    BookingCardComponent,
   ],
 })
 export class SharedModule {}

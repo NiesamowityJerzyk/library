@@ -11,6 +11,7 @@ import { AddPublisherComponent } from './pages/add-publisher/add-publisher.compo
 import { AddAuthorComponent } from './pages/add-author/add-author.component';
 import { authorsComponent } from './pages/authors/authors.component';
 import { BorrowsComponent } from './pages/borrows/borrows.component';
+import { EditBorrowComponent } from './pages/edit-borrow/edit-borrow.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,10 @@ const routes: Routes = [
         path: 'add-book',
         component: AddBookComponent,
         data: { pageName: 'Add book' },
+      },
+      {
+        path: 'edit-borrow/:id',
+        component: EditBorrowComponent,
       },
       {
         path: 'add-author',

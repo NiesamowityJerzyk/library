@@ -3,6 +3,7 @@ import { customIconsConfig } from './shared/custom-icons.config';
 import { DomSanitizer, Title } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
 import { environment } from 'src/environments/environment';
+import { UserService } from './modules/user/store/service';
 
 @Component({
   selector: 'app-root',
@@ -13,13 +14,13 @@ export class AppComponent {
   constructor(
     private matIconRegistry: MatIconRegistry,
     private titleService: Title,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    private userService: UserService
   ) {
     this.loadCustomIcons();
   }
 
   public ngOnInit(): void {
-    console.log('v - 1.0.3');
     this.titleService.setTitle(environment.appName);
   }
 

@@ -15,4 +15,7 @@ export class ConstsService {
     { title: 'Pracownik', value: UserRolesEnum.LIBRARIAN },
     { title: 'Czytelnik', value: UserRolesEnum.READER },
   ];
+
+  public borrowsOptions: IConstOption[] = [];
+  public copyStatusOptions: IConstOption[] = [];
 }

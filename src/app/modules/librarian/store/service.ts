@@ -43,4 +43,7 @@ export class LibrarianService {
   public getBorrows(): Observable<any[]> {
     return this.apiService.get(`/api/borrows`);
   }
+  public getBorrow(id: number): Observable<any[]> {
+    return this.apiService.get(`/api/borrows/${id}`);
+  }
 }

@@ -34,7 +34,13 @@
       Autorzy
     </div>
 
-    <div class="cursor-pointer" *ngIf="role === 'READER'">Rezerwacje</div>
+    <div
+      class="cursor-pointer"
+      [routerLink]="'/user/bookings'"
+      *ngIf="role === 'READER'"
+    >
+      Rezerwacje
+    </div>
     <div
       class="cursor-pointer"
       *ngIf="role === 'ADMIN'"

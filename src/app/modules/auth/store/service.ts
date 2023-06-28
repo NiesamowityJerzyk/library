@@ -27,6 +27,8 @@ export class AuthService {
   public fetchProfile(id: number): Observable<IUser> {
     return this.apiService.get(`/api/user/${id}`).pipe(
       tap((data: IUser) => {
+        console.log(data);
+
         this.store.dispatch(new SetUser(data));
       })
     );
