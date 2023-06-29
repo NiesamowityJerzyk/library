@@ -1,0 +1,48 @@
+<div class="text-2xl font-medium mb-10">Dodaj Wypożyczenie</div>
+
+<div class="grid grid-cols-2 gap-5">
+  <div [formGroup]="form">
+    <mat-form-field class="w-full">
+      <mat-label>Użytkownik</mat-label>
+      <mat-select formControlName="userID">
+        <mat-option *ngFor="let user of userOptions" [value]="user.value">
+          {{ user.title }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div [formGroup]="form">
+    <mat-form-field class="w-full">
+      <mat-label>Status wypożyczenia</mat-label>
+      <mat-select formControlName="borrowStatusID">
+        <mat-option
+          *ngFor="let option of constsService.borrowsOptions"
+          [value]="option.value"
+        >
+          {{ option.title }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div [formGroup]="formBook">
+    <mat-form-field class="w-full">
+      <mat-label>Książka</mat-label>
+      <mat-select formControlName="title">
+        <mat-option *ngFor="let book of booksOptions" [value]="book.value">
+          {{ book.title }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+<button
+  mat-raised-button
+  class="w-full"
+  [disabled]="form.invalid"
+  color="primary"
+  (click)="addBorrow()"
+>
+  Dodaj
+</button>

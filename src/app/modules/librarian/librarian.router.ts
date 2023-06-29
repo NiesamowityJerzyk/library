@@ -12,6 +12,7 @@ import { AddAuthorComponent } from './pages/add-author/add-author.component';
 import { authorsComponent } from './pages/authors/authors.component';
 import { BorrowsComponent } from './pages/borrows/borrows.component';
 import { EditBorrowComponent } from './pages/edit-borrow/edit-borrow.component';
+import { AddBorrowComponent } from './pages/add-borrow/add-borrow.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
         path: 'add-book',
         component: AddBookComponent,
         data: { pageName: 'Add book' },
+      },
+      {
+        path: 'add-borrow',
+        component: AddBorrowComponent,
       },
       {
         path: 'edit-borrow/:id',

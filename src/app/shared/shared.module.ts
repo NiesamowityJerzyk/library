@@ -18,7 +18,7 @@ import { BorrowCardComponent } from './components/borrow-card/borrow-card.compon
 import { BookingsComponent } from '../modules/user/pages/bookings/bookings.component';
 import { BookingCardComponent } from './components/booking-card/booking-card.component';
 // import { NgxLoaderIndicatorModule } from 'ngx-loader-indicator';
-import { NgxLoaderIndicatorModule } from 'ngx-loader-indicator';
+// import { NgxLoaderIndicatorModule } from 'ngx-loader-indicator';
 @NgModule({
   declarations: [
     NavbarComponent,

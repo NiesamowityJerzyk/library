@@ -53,4 +53,8 @@ export class LibrarianService {
   public updateBorrow(data: any): Observable<any> {
     return this.apiService.put(`/api/borrows`, data);
   }
+
+  public addBorrow(data: any): Observable<any> {
+    return this.apiService.post(`/api/borrows`, data);
+  }
 }

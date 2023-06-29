@@ -41,4 +41,8 @@ export class BooksComponent {
       this.books = val;
     });
   }
+
+  ngOnDestroy() {
+    this.subscription$.unsubscribe();
+  }
 }

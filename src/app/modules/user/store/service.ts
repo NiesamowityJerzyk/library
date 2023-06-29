@@ -42,7 +42,7 @@ export class UserService {
     );
   }
 
-  public getBookCopies(data?: any): Observable<IBorrow[]> {
+  public getBookCopies(data?: any): Observable<IBookCopy[]> {
     return this.apiService.get(`/api/bookcopies`, data);
   }
 
