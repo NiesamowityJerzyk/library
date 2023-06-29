@@ -12,3 +12,11 @@ export interface ICreateBorrow {
   userID: number;
   borrowStatusID: number;
 }
+
+export interface IBookCopy {
+  bookId: number;
+  copyID: number;
+  copyStatusId: number;
+  copyStatusName: string;
+  title: string;
+}

@@ -5,7 +5,7 @@ import { Store } from '@ngxs/store';
 import { Observable, of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { ApiService } from 'src/app/core/services/api.service';
-import { IBorrow, ICopyStatus, ICreateBorrow } from './types';
+import { IBookCopy, IBorrow, ICopyStatus, ICreateBorrow } from './types';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -33,11 +33,20 @@ export class UserService {
     return this.apiService.get(`/api/copystatuses`, data);
   }
 
+  // public getBorrows(data?: any): Observable<IBorrow[]> {
+  //   return this.apiService.get(`/api/borrows`, data);
+  // }
   public getBorrows(data?: any): Observable<IBorrow[]> {
-    return this.apiService.get(`/api/borrows`, data);
+    return this.apiService.get(
+      `/api/borrows/?user=${data.user}&status=${data.status}`
+    );
   }
 
   public getBookCopies(data?: any): Observable<IBorrow[]> {
     return this.apiService.get(`/api/bookcopies`, data);
+  }
+
+  public getBookCopiesByBookId(bookId: number): Observable<IBookCopy[]> {
+    return this.apiService.get(`/api/bookcopies/?bookid=${bookId}`);
   }
 }

@@ -29,6 +29,15 @@
       </mat-select>
     </mat-form-field>
 
-    <app-button>Add</app-button>
+    <!-- <app-button>Add</app-button> -->
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="!w-full"
+      [disabled]="form.invalid"
+    >
+      Add
+    </button>
   </div>
 </form>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LibrarianService } from '../../store/service';
-import { IAuthor, IBook, IPublisher } from '../../store/types';
+import { IAuthor, IBook, IBorrow, IPublisher } from '../../store/types';
 import {
   UntypedFormBuilder,
   UntypedFormGroup,
@@ -14,6 +14,7 @@ import {
 } from 'src/app/core/services/const.service';
 import { HotToastService } from '@ngneat/hot-toast';
 import { finalize, forkJoin } from 'rxjs';
+import { UserService } from 'src/app/modules/user/store/service';
 
 @Component({
   selector: 'app-edit-borrow',
@@ -36,33 +37,60 @@ export class EditBorrowComponent {
     private fb: UntypedFormBuilder,
     public constsService: ConstsService,
     private toast: HotToastService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private userService: UserService
   ) {}
 
+  public borrowsOptions!: IConstOption[];
   public publishersOptions!: IConstOption[];
   public authorsOptions!: IConstOption[];
 
   ngOnInit() {
     this.getBorrow();
+    this.getBorrowStatuses();
+  }
+
+  private getBorrowStatuses(): void {
+    this.userService.getBorrowStatuses().subscribe((val) => {
+      this.borrowsOptions = val.map((el: any) => ({
+        title: el.borrowStatusName,
+        value: el.borrowStatusID,
+      }));
+      console.log('borrows status', this.borrowsOptions);
+    });
   }
 
   public getBorrow(): void {
     this.librarianService
       .getBorrow(this.route.snapshot.params['id'])
       .subscribe((val) => {
-        console.log(val);
         this.form.patchValue(val);
-        console.log(this.form.value);
       });
   }
 
   public updateBorrow(): void {
-    console.log(this.form.value);
+    let form = this.form.value;
+    console.log(form);
+    let borrowDate = form.borrowDate;
+    let returnDate = form.returnDate;
+    // console.log(borrowDate instanceof Date);
+    // console.log(returnDate instanceof Date);
+    if (borrowDate instanceof Date) {
+      const offset = borrowDate.getTimezoneOffset();
+      borrowDate = new Date(borrowDate.getTime() - offset * 60 * 1000);
+      form.borrowDate = borrowDate.toISOString().split('T')[0];
+    }
+    if (returnDate instanceof Date) {
+      const offset = returnDate.getTimezoneOffset();
+      returnDate = new Date(returnDate.getTime() - offset * 60 * 1000);
+      form.returnDate = returnDate.toISOString().split('T')[0];
+    }
+    console.log('wysylam', form);
+    // console.log(date.toISOString().split('T')[0]);
 
-    this.librarianService.addBook(this.form.value).subscribe((val) => {
-      console.log(val);
-      this.toast.success('Successfully added a book');
-      this.router.navigate(['/librarian/books']);
+    this.librarianService.updateBorrow(form).subscribe((val) => {
+      this.toast.success('Successfully updated a borrow');
+      this.router.navigate(['/librarian/borrows']);
     });
   }
 }

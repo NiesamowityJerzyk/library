@@ -16,7 +16,6 @@ export class BorrowsComponent {
 
   ngOnInit() {
     this.librarianService.getBorrows().subscribe((val) => {
-      console.log(val);
       this.borrows = val;
     });
   }

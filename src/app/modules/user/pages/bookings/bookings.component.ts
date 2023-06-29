@@ -28,7 +28,7 @@ export class BookingsComponent {
     this.userService
       .getBorrows({ user: 4, status: 'reservations' })
       .subscribe((val) => {
-        console.log(val);
+        console.log('borrows rezerwacje: ', val);
         this.borrows = val;
       });
   }

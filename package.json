@@ -29,7 +29,7 @@
     "@ngneat/hot-toast": "^5.0.1",
     "@ngneat/input-mask": "^5.2.0",
     "@ngxs/store": "^3.8.0",
-    "ngx-loader-indicator": "^10.0.0",
+    "ngx-loader-indicator": "^15.0.0",
     "ngxs-reset-plugin": "^3.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

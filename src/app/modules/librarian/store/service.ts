@@ -17,8 +17,11 @@ export class LibrarianService {
     private zone: NgZone
   ) {}
 
-  public getBooks(): Observable<IBook[]> {
-    return this.apiService.get(`/api/books`);
+  public getBooks(name?: string): Observable<IBook[]> {
+    // return this.apiService.get(`/api/books`);
+    return this.apiService.get(
+      name ? `/api/books/search=${name}` : `/api/books`
+    );
   }
 
   public addBook(data: any): Observable<any> {
@@ -45,5 +48,9 @@ export class LibrarianService {
   }
   public getBorrow(id: number): Observable<any[]> {
     return this.apiService.get(`/api/borrows/${id}`);
+  }
+
+  public updateBorrow(data: any): Observable<any> {
+    return this.apiService.put(`/api/borrows`, data);
   }
 }

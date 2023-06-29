@@ -8,6 +8,8 @@ import {
   IConstOption,
 } from 'src/app/core/services/const.service';
 import { AuthService } from 'src/app/modules/auth/store/service';
+import { IBorrow } from '../../store/types';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-books',
@@ -21,7 +23,8 @@ export class BooksComponent {
     private librarianService: LibrarianService,
     private userService: UserService,
     private constsService: ConstsService,
-    private authService: AuthService
+    private authService: AuthService,
+    private toast: HotToastService
   ) {}
 
   ngOnInit() {
@@ -38,24 +41,45 @@ export class BooksComponent {
   public createBorrow(bookId: number): void {
     console.log(bookId);
 
-    this.userService.getBookCopies().subscribe((val) => {
-      console.log(val);
-      let data = val.filter((el: any) => el.bookId === bookId);
-      console.log(data);
-    });
-    // let data = {
-    //   copyID: this.constsService.copyStatusOptions.find(
-    //     (el: IConstOption) => el.title === 'Loaned'
-    //   )?.value,
-    //   borrowStatusID: this.constsService.borrowsOptions.find(
-    //     (el: IConstOption) => el.title === 'Reservation'
-    //   )?.value,
-    //   userId: 4,
-    // };
-    // console.log(data);
-    // this.userService.createBorrow().subscribe((val) => {
+    // this.userService.getBookCopies().subscribe((val) => {
     //   console.log(val);
+    //   let data = val.filter((el: any) => el.bookId === bookId);
+    //   console.log(data);
     // });
+
+    this.userService
+      .getBorrows({ user: 4, status: 'reservations' })
+      .subscribe((val) => {
+        console.log('borrows rezerwacje: ', val);
+
+        let isBooked = val.find((el: any) => el.bookID === bookId);
+        if (!isBooked) {
+          this.userService.getBookCopiesByBookId(bookId).subscribe((val) => {
+            console.log(val);
+            //sprawdzic czy jest conajmniej jedna dostepna kopia
+            if (val.length) {
+              let data = {
+                copyID: val[0].copyID,
+                borrowStatusID: this.constsService.borrowsOptions.find(
+                  (el: IConstOption) => el.title === 'Reservation'
+                )?.value,
+                userID: 4,
+              };
+              this.userService.createBorrow(data).subscribe((val) => {
+                console.log(val);
+                this.toast.success('Rezerwacja utworzona');
+              });
+            } else {
+              this.toast.warning(
+                'Ta książka nie ma egzemplarzy. Rezerwacja niedostępna'
+              );
+            }
+          });
+        } else {
+          this.toast.warning('Masz już rezerwację na tą książkę');
+        }
+      });
+
     //to do
   }
 }

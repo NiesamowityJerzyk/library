@@ -3,24 +3,51 @@
 <form [formGroup]="form" (ngSubmit)="updateBorrow()">
   <div class="grid grid-cols-2 gap-5 mb-5">
     <mat-form-field>
-      <mat-label>Choose a date</mat-label>
-      <input matInput [matDatepicker]="picker" />
-      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-label>Data wypożyczenia</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="borrowDate" />
       <mat-datepicker-toggle
         matIconSuffix
         [for]="picker"
       ></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Data oddania</mat-label>
+      <input
+        matInput
+        [matDatepicker]="pickerReturn"
+        formControlName="returnDate"
+      />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="pickerReturn"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #pickerReturn></mat-datepicker>
+    </mat-form-field>
+
+    <!-- <mat-form-field class="w-full">
+      <mat-label>Status kopii</mat-label>
+      <mat-select formControlName="copyID">
+        <mat-option
+          *ngFor="let item of constsService.copyStatusOptions"
+          [value]="item.value"
+        >
+          {{ item.title }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
+
+    <mat-form-field class="w-full">
+      <mat-label>Status wypożyczenia</mat-label>
+      <mat-select formControlName="borrowStatusID">
+        <mat-option *ngFor="let item of borrowsOptions" [value]="item.value">
+          {{ item.title }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   <!-- <app-button>Dodaj</app-button> -->
 
-  <button
-    mat-raised-button
-    class="w-full"
-    [disabled]="form.invalid"
-    color="primary"
-  >
-    Zapisz
-  </button>
+  <button mat-raised-button class="w-full" color="primary">Zapisz</button>
 </form>

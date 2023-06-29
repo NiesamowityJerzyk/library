@@ -17,7 +17,8 @@ import { AuthorCardComponent } from './components/author-card/author-card.compon
 import { BorrowCardComponent } from './components/borrow-card/borrow-card.component';
 import { BookingsComponent } from '../modules/user/pages/bookings/bookings.component';
 import { BookingCardComponent } from './components/booking-card/booking-card.component';
-
+// import { NgxLoaderIndicatorModule } from 'ngx-loader-indicator';
+import { NgxLoaderIndicatorModule } from 'ngx-loader-indicator';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -39,6 +40,7 @@ import { BookingCardComponent } from './components/booking-card/booking-card.com
     RouterModule,
     PortalModule,
     FontAwesomeModule,
+    // NgxLoaderIndicatorModule,
   ],
   exports: [
     CommonModule,
@@ -57,6 +59,7 @@ import { BookingCardComponent } from './components/booking-card/booking-card.com
     AuthorCardComponent,
     BorrowCardComponent,
     BookingCardComponent,
+    // NgxLoaderIndicatorModule,
   ],
 })
 export class SharedModule {}

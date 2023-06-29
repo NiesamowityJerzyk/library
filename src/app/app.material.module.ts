@@ -37,12 +37,12 @@ import { MY_FORMATS } from './modules/librarian/store/types';
     MatNativeDateModule,
   ],
   providers: [
-    {
-      provide: DateAdapter,
-      useClass: MomentDateAdapter,
-      deps: [MAT_DATE_LOCALE],
-    },
-    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+    // {
+    //   provide: DateAdapter,
+    //   useClass: MomentDateAdapter,
+    //   deps: [MAT_DATE_LOCALE],
+    // },
+    // { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
   ],
 })
 export class AppMaterialModule {}
