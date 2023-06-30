@@ -12,19 +12,18 @@ import { IUser, UserRolesEnum } from 'src/app/modules/auth/store/types';
 export class NavbarComponent {
   @Input() public text!: string;
   public role!: string;
-  public username!: string;
+  public fullName!: string;
   public popoverOpen = false;
   constructor(
     private authService: AuthService,
     private store: Store,
-    private tokenService: TokenService
+    public tokenService: TokenService
   ) {}
-
   // public user$ = this.store.select(AuthState.user);
 
   ngOnInit() {
     this.role = UserRolesEnum[this.tokenService.getRole() as any];
-    this.username = UserRolesEnum[this.tokenService.getUsername() as any];
+    this.fullName = this.tokenService.getFullName() as string;
   }
   public togglePopover(): void {
     this.popoverOpen = !this.popoverOpen;

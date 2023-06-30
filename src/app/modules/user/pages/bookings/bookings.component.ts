@@ -8,6 +8,7 @@ import {
   IConstOption,
 } from 'src/app/core/services/const.service';
 import { AuthService } from 'src/app/modules/auth/store/service';
+import { TokenService } from 'src/app/core/services/token.service';
 
 @Component({
   selector: 'app-bookings',
@@ -21,14 +22,17 @@ export class BookingsComponent {
     private librarianService: LibrarianService,
     private userService: UserService,
     private constsService: ConstsService,
-    private authService: AuthService
+    private authService: AuthService,
+    public tokenService: TokenService
   ) {}
 
   ngOnInit() {
     this.userService
-      .getBorrows({ user: 4, status: 'reservations' })
+      .getBorrows({
+        user: Number(this.tokenService.getUserId()),
+        // status: 'reservations',
+      })
       .subscribe((val) => {
-        console.log('borrows rezerwacje: ', val);
         this.borrows = val;
       });
   }

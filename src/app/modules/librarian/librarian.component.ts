@@ -8,6 +8,7 @@ import { AuthService } from '../auth/store/service';
 import { UserService } from '../user/store/service';
 import { ConstsService } from 'src/app/core/services/const.service';
 import { IBorrow, ICopyStatus } from '../user/store/types';
+import { getBorrowStatusInPolish } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-librarian',
@@ -31,7 +32,7 @@ export class LibrarianComponent implements OnDestroy {
   private getBorrowStatuses(): void {
     this.userService.getBorrowStatuses().subscribe((val) => {
       this.constsService.borrowsOptions = val.map((el: IBorrow) => ({
-        title: el.borrowStatusName,
+        title: getBorrowStatusInPolish(el.borrowStatusName),
         value: el.borrowStatusID,
       }));
     });

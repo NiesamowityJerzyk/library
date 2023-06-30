@@ -1,10 +1,25 @@
-<div class="flex items-center justify-between mb-10">
-  <div class="text-2xl">Users</div>
-  <!-- <div class="cursor-pointer text-lg" (click)="openDialogAdd()">Add user</div> -->
-  <button (click)="openDialogAdd()" mat-raised-button color="primary">
-    Dodaj użytkownika
-  </button>
+<div [formGroup]="formSearch" class="mb-5">
+  <div class="flex items-center justify-between mb-5">
+    <div class="text-2xl font-medium">Użytkownicy</div>
+    <!-- <div class="cursor-pointer text-lg" (click)="openDialogAdd()">Add user</div> -->
+    <button (click)="openDialogAdd()" mat-raised-button color="primary">
+      Dodaj użytkownika
+    </button>
+  </div>
+
+  <div class="flex items-center gap-5">
+    <mat-form-field class="w-1/3">
+      <mat-label>Szukaj po imieniu i nazwisku</mat-label>
+      <input
+        matInput
+        formControlName="search"
+        placeholder="Szukaj po imieniu i nazwisku"
+      />
+    </mat-form-field>
+    <!-- <div><button mat-raised-button color="primary">Szukaj</button></div> -->
+  </div>
 </div>
+
 <div class="flex flex-col gap-8">
   <app-user-card
     *ngFor="let user of users"

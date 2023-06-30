@@ -24,7 +24,6 @@ import { ConstsService } from 'src/app/core/services/const.service';
 export class EditUserDialogComponent {
   public form: UntypedFormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.maxLength(256), email]],
-    // password: ['admin', [Validators.required, Validators.maxLength(64)]],
     firstName: ['', [Validators.required, Validators.maxLength(64)]],
     lastName: ['', [Validators.required, Validators.maxLength(64)]],
     roleId: [1, []],

@@ -35,7 +35,6 @@ export class UsersComponent {
 
   openDialogUpdate(user: IUser): void {
     let updateData = user;
-    console.log(updateData);
 
     const dialogRef = this.dialog.open(EditUserDialogComponent, {
       data: updateData,
@@ -44,10 +43,6 @@ export class UsersComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log({
-          userID: user.userID,
-          ...result,
-        });
         this.updateUser({
           userID: user.userID,
           ...result,

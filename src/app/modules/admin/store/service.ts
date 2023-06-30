@@ -17,8 +17,8 @@ export class AdminService {
     private zone: NgZone
   ) {}
 
-  public getUsers(): Observable<IUser[]> {
-    return this.apiService.get(`/api/user`);
+  public getUsers(name?: string): Observable<IUser[]> {
+    return this.apiService.get(name ? `/api/user/search=${name}` : `/api/user`);
   }
 
   public updateUser(data: any): Observable<IUser[]> {

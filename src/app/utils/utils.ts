@@ -1,9 +1,21 @@
-import { UntypedFormGroup } from '@angular/forms';
-import { map, Observable, switchMap } from 'rxjs';
-import { ActivatedRouteSnapshot, Data } from '@angular/router';
-
 export const uniqueID = (): string => {
   return '_' + Math.random().toString(36).substr(2, 9);
+};
+
+export const getBorrowStatusInPolish = (status: string): string => {
+  if (status === 'On borrow') {
+    return 'Wypożyczona';
+  }
+  if (status === 'Returned') {
+    return 'Zwrócona';
+  }
+  if (status === 'Overkept') {
+    return 'Przetrzymana';
+  }
+  if (status === 'Reservation') {
+    return 'Zarezerwowana';
+  }
+  return '';
 };
 
 export const prepareParams = (

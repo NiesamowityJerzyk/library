@@ -15,6 +15,7 @@ import {
 import { HotToastService } from '@ngneat/hot-toast';
 import { finalize, forkJoin } from 'rxjs';
 import { UserService } from 'src/app/modules/user/store/service';
+import { getBorrowStatusInPolish } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-edit-borrow',
@@ -50,13 +51,32 @@ export class EditBorrowComponent {
     this.getBorrowStatuses();
   }
 
+  // public getBorrowStatusInPolish(status: string): string {
+  //   if (status === 'On borrow') {
+  //     return 'Wypożyczona';
+  //   }
+  //   if (status === 'Returned') {
+  //     return 'Zwrócona';
+  //   }
+  //   if (status === 'On borrow') {
+  //     return 'Przetrzymana';
+  //   }
+  //   if (status === 'On borrow') {
+  //     return 'Zarezerwowana';
+  //   }
+  //   return '';
+  // }
+
   private getBorrowStatuses(): void {
     this.userService.getBorrowStatuses().subscribe((val) => {
+      console.log(val);
+
       this.borrowsOptions = val.map((el: any) => ({
-        title: el.borrowStatusName,
+        title: getBorrowStatusInPolish(el.borrowStatusName),
         value: el.borrowStatusID,
       }));
-      console.log('borrows status', this.borrowsOptions);
+
+      console.log(this.borrowsOptions);
     });
   }
 
@@ -70,11 +90,8 @@ export class EditBorrowComponent {
 
   public updateBorrow(): void {
     let form = this.form.value;
-    console.log(form);
     let borrowDate = form.borrowDate;
     let returnDate = form.returnDate;
-    // console.log(borrowDate instanceof Date);
-    // console.log(returnDate instanceof Date);
     if (borrowDate instanceof Date) {
       const offset = borrowDate.getTimezoneOffset();
       borrowDate = new Date(borrowDate.getTime() - offset * 60 * 1000);
@@ -85,8 +102,6 @@ export class EditBorrowComponent {
       returnDate = new Date(returnDate.getTime() - offset * 60 * 1000);
       form.returnDate = returnDate.toISOString().split('T')[0];
     }
-    console.log('wysylam', form);
-    // console.log(date.toISOString().split('T')[0]);
 
     this.librarianService.updateBorrow(form).subscribe((val) => {
       this.toast.success('Successfully updated a borrow');

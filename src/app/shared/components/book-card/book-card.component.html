@@ -1,20 +1,24 @@
-<div class="flex items-center justify-between p-5 bg-grey-100 rounded-xl">
-  <div class="flex justify-between items-center gap-16">
-    <div class="flex flex-col gap-2.5 !w-[34%]">
-      <p class="font-medium">Title</p>
-      <p>{{ book.title }}</p>
-    </div>
-    <div class="flex flex-col gap-2.5 !w-[20%]">
-      <p class="font-medium">Author</p>
-      <p>{{ book.authorFirstName }} {{ book.authorLastName }}</p>
-    </div>
-    <div class="flex flex-col gap-2.5 !w-[16%]">
-      <p class="font-medium">Wydawnictwo</p>
-      <p>{{ book.publisherName }}</p>
-    </div>
-    <div class="flex flex-col gap-2.5 !w-[10%]">
-      <p class="font-medium">Rok wydania</p>
-      <p>{{ book.releaseYear }}</p>
+<div
+  class="flex items-center justify-between gap-10 p-5 bg-grey-100 rounded-xl"
+>
+  <div class="flex-1">
+    <div class="flex justify-between items-center gap-10">
+      <div class="flex flex-col gap-2.5 !w-[25%]">
+        <p class="font-medium">Title</p>
+        <p>{{ book.title }}</p>
+      </div>
+      <div class="flex flex-col gap-2.5 !w-[20%]">
+        <p class="font-medium">Author</p>
+        <p>{{ book.authorFirstName }} {{ book.authorLastName }}</p>
+      </div>
+      <div class="flex flex-col gap-2.5 !w-[15%]">
+        <p class="font-medium">Wydawnictwo</p>
+        <p>{{ book.publisherName }}</p>
+      </div>
+      <div class="flex flex-col gap-2.5 !w-[10%]">
+        <p class="font-medium">Rok wydania</p>
+        <p>{{ book.releaseYear }}</p>
+      </div>
     </div>
   </div>
 
@@ -30,7 +34,9 @@
     </button>
 
     <ng-template #noCopies>
-      <div class="text-base font-medium">Brak egzemplarzy</div>
+      <div class="text-base font-medium w-[200px] text-center">
+        Brak egzemplarzy
+      </div>
     </ng-template>
   </ng-container>
 </div>

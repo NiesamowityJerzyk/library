@@ -37,12 +37,6 @@ export class LoginComponent {
     private toast: HotToastService
   ) {}
 
-  ngOnInit() {
-    this.authService.getUsers().subscribe((val) => {
-      console.log(val);
-    });
-  }
-
   public submitForm(): void {
     // if (this.form.invalid) {
     //   this.form.markAllAsTouched();

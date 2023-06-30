@@ -24,6 +24,14 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <app-button>Update</app-button>
+
+    <button
+      mat-raised-button
+      class="w-full"
+      color="primary"
+      [disabled]="form.invalid"
+    >
+      Zapisz
+    </button>
   </div>
 </form>

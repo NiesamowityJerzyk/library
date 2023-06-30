@@ -29,10 +29,7 @@ export class AddPublisherComponent {
   ngOnInit() {}
 
   public addPublisher(): void {
-    console.log(this.form.value);
-
     this.librarianService.addPublisher(this.form.value).subscribe((val) => {
-      console.log(val);
       this.toast.success('Successfully added a publisher');
       this.router.navigate(['/librarian/publishers']);
     });

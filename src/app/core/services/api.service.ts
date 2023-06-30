@@ -41,22 +41,4 @@ export class ApiService {
       params: prepareParams(params),
     });
   }
-
-  public upload(path: string, file: File): Observable<any> {
-    const form = new FormData();
-    form.append('file', file);
-    return this.http.request('put', environment.apiUrl + path, {
-      body: form,
-    });
-  }
-
-  public download(
-    path: string,
-    cashewOptions: ContextOptions = { cache: false }
-  ): Observable<Blob> {
-    return this.http.request('get', path, {
-      responseType: 'blob',
-      context: withCache(cashewOptions),
-    });
-  }
 }

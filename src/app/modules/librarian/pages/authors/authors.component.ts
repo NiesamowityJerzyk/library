@@ -15,10 +15,7 @@ export class authorsComponent {
   ) {}
 
   ngOnInit() {
-    console.log('elo');
-
     this.librarianService.getAuthors().subscribe((val) => {
-      console.log(val);
       this.authors = val;
     });
   }

@@ -37,9 +37,7 @@ export class UserService {
   //   return this.apiService.get(`/api/borrows`, data);
   // }
   public getBorrows(data?: any): Observable<IBorrow[]> {
-    return this.apiService.get(
-      `/api/borrows/?user=${data.user}&status=${data.status}`
-    );
+    return this.apiService.get(`/api/borrows/user=${data.user}`);
   }
 
   public getBookCopies(data?: any): Observable<IBookCopy[]> {
@@ -48,5 +46,9 @@ export class UserService {
 
   public getBookCopiesByBookId(bookId: number): Observable<IBookCopy[]> {
     return this.apiService.get(`/api/bookcopies/?bookid=${bookId}`);
+  }
+
+  public updateBookCopy(data?: any): Observable<any> {
+    return this.apiService.put(`/api/bookcopies`, data);
   }
 }

@@ -66,6 +66,8 @@ export class AddBorrowComponent {
               value: el.copyID,
             }));
 
+          console.log(bookCopyOptions);
+
           if (bookCopyOptions[0]?.value) {
             this.form.get('copyID')?.patchValue(bookCopyOptions[0].value);
           } else {
@@ -78,18 +80,30 @@ export class AddBorrowComponent {
 
   private getUsers(): void {
     this.adminService.getUsers().subscribe((val) => {
-      this.userOptions = val.map((el: IUser) => ({
-        title: el.firstName + ' ' + el.lastName,
-        value: el.userID,
-      }));
+      console.log(val);
+
+      this.userOptions = val
+        .filter((el: any) => el.roleName === 'Reader')
+        .map((el: IUser) => ({
+          title: el.firstName + ' ' + el.lastName,
+          value: el.userID,
+        }));
     });
   }
 
   public addBorrow(): void {
-    console.log(this.form.value);
-
     this.librarianService.addBorrow(this.form.value).subscribe((val) => {
-      console.log(val);
+      let statusLoanedId = this.constsService.copyStatusOptions.find(
+        (el: IConstOption) => el.title === 'Loaned'
+      )?.value;
+      this.userService
+        .updateBookCopy({
+          copyID: this.form.value.copyID,
+          copyStatusId: statusLoanedId,
+          bookId: this.formBook.value.title,
+        })
+        .subscribe();
+
       this.toast.success('Successfully added a borrow');
       this.router.navigate(['/librarian/borrows']);
     });

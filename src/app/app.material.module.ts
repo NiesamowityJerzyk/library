@@ -23,6 +23,7 @@ import {
   MomentDateAdapter,
 } from '@angular/material-moment-adapter';
 import { MY_FORMATS } from './modules/librarian/store/types';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   exports: [
@@ -35,6 +36,7 @@ import { MY_FORMATS } from './modules/librarian/store/types';
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     // {

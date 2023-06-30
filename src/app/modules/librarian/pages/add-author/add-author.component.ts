@@ -37,19 +37,15 @@ export class AddAuthorComponent {
 
   ngOnInit() {
     this.librarianService.getPublishers().subscribe((val) => {
-      console.log(val);
       this.publishersOptions = val.map((el: IPublisher) => ({
         title: el.publisherName,
         value: el.publisherID,
       }));
-      console.log(this.publishersOptions);
     });
   }
 
   public addAuthor(): void {
-    console.log(this.form.value);
     this.librarianService.addAuthor(this.form.value).subscribe((val) => {
-      console.log(val);
       this.toast.success('Successfully added an author');
       this.router.navigate(['/librarian/authors']);
     });

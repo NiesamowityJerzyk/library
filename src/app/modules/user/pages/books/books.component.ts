@@ -8,8 +8,9 @@ import {
   IConstOption,
 } from 'src/app/core/services/const.service';
 import { AuthService } from 'src/app/modules/auth/store/service';
-import { IBorrow } from '../../store/types';
+import { IBookCopy, IBorrow } from '../../store/types';
 import { HotToastService } from '@ngneat/hot-toast';
+import { TokenService } from 'src/app/core/services/token.service';
 
 @Component({
   selector: 'app-books',
@@ -24,49 +25,51 @@ export class BooksComponent {
     private userService: UserService,
     private constsService: ConstsService,
     private authService: AuthService,
-    private toast: HotToastService
+    private toast: HotToastService,
+    private tokenService: TokenService
   ) {}
 
   ngOnInit() {
     this.librarianService.getBooks().subscribe((val) => {
-      console.log('books', val);
       this.books = val;
-    });
-
-    this.authService.getUsers().subscribe((val) => {
-      console.log('users', val);
     });
   }
 
   public createBorrow(bookId: number): void {
-    console.log(bookId);
-
-    // this.userService.getBookCopies().subscribe((val) => {
-    //   console.log(val);
-    //   let data = val.filter((el: any) => el.bookId === bookId);
-    //   console.log(data);
-    // });
-
     this.userService
-      .getBorrows({ user: 4, status: 'reservations' })
+      .getBorrows({
+        user: this.tokenService.getUserId(),
+        status: 'reservations',
+      })
       .subscribe((val) => {
-        console.log('borrows rezerwacje: ', val);
-
         let isBooked = val.find((el: any) => el.bookID === bookId);
         if (!isBooked) {
           this.userService.getBookCopiesByBookId(bookId).subscribe((val) => {
-            console.log(val);
-            //sprawdzic czy jest conajmniej jedna dostepna kopia
-            if (val.length) {
+            let availableCopies = val.filter(
+              (el: IBookCopy) => el.copyStatusName === 'Available'
+            );
+
+            // sprawdzic czy jest conajmniej jedna dostepna kopia
+            if (availableCopies.length) {
               let data = {
-                copyID: val[0].copyID,
+                copyID: availableCopies[0].copyID,
                 borrowStatusID: this.constsService.borrowsOptions.find(
                   (el: IConstOption) => el.title === 'Reservation'
                 )?.value,
-                userID: 4,
+                userID: this.tokenService.getUserId(),
               };
               this.userService.createBorrow(data).subscribe((val) => {
-                console.log(val);
+                let statusLoanedId = this.constsService.copyStatusOptions.find(
+                  (el: IConstOption) => el.title === 'Loaned'
+                )?.value;
+
+                this.userService
+                  .updateBookCopy({
+                    copyID: data.copyID,
+                    copyStatusId: statusLoanedId,
+                    bookId,
+                  })
+                  .subscribe();
                 this.toast.success('Rezerwacja utworzona');
               });
             } else {

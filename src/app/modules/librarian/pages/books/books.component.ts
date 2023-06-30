@@ -12,6 +12,7 @@ import { Subscription, debounceTime, distinctUntilChanged } from 'rxjs';
 })
 export class BooksComponent {
   public books!: IBook[];
+  public isLoading = false;
   constructor(
     public router: Router,
     private librarianService: LibrarianService,
@@ -29,16 +30,16 @@ export class BooksComponent {
         .get('search')
         ?.valueChanges.pipe(distinctUntilChanged(), debounceTime(300))
         .subscribe((val) => {
-          console.log(val);
           this.getBooks(val);
         })
     );
   }
 
   private getBooks(bookName?: string): void {
+    this.isLoading = true;
     this.librarianService.getBooks(bookName).subscribe((val) => {
-      console.log(val);
       this.books = val;
+      this.isLoading = false;
     });
   }
 

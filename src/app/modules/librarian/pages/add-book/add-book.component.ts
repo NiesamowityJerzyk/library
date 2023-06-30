@@ -52,21 +52,16 @@ export class AddBookComponent {
           title: el.publisherName,
           value: el.publisherID,
         }));
-        console.log(this.publishersOptions);
 
         this.authorsOptions = authors.map((el: IAuthor) => ({
           title: el.firstName + ' ' + el.lastName,
           value: el.authorID,
         }));
-        console.log(this.authorsOptions);
       });
   }
 
   public addBook(): void {
-    console.log(this.form.value);
-
     this.librarianService.addBook(this.form.value).subscribe((val) => {
-      console.log(val);
       this.toast.success('Successfully added a book');
       this.router.navigate(['/librarian/books']);
     });

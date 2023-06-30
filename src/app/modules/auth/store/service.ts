@@ -27,8 +27,7 @@ export class AuthService {
   public fetchProfile(id: number): Observable<IUser> {
     return this.apiService.get(`/api/user/${id}`).pipe(
       tap((data: IUser) => {
-        console.log(data);
-
+        this.tokenService.saveFullName(data.firstName + ' ' + data.lastName);
         this.store.dispatch(new SetUser(data));
       })
     );
@@ -37,23 +36,16 @@ export class AuthService {
   public login(data: ILogin): Observable<IUser> {
     return this.apiService.post('/api/auth', data).pipe(
       switchMap((data: IResponseUser) => {
-        console.log(data);
-
         this.tokenService.saveToken(data.userToken);
         this.tokenService.saveRole(data.roleId);
-        // this.tokenService.saveUsername(data);
-        // this.tokenService.saveRefreshToken(data.refreshToken);
+        this.tokenService.saveUserId(data.userId);
         return this.fetchProfile(data.userId);
       })
     );
   }
 
   public getUsers(): Observable<IUser> {
-    return this.apiService.get(`/api/user`).pipe(
-      tap((data: IUser) => {
-        // this.store.dispatch(new SetUser(data));
-      })
-    );
+    return this.apiService.get(`/api/user`);
   }
 
   public logout(): void {
@@ -61,16 +53,5 @@ export class AuthService {
     this.store
       .dispatch(new StateResetAll())
       .subscribe(() => this.zone.run(() => this.router.navigateByUrl('/auth')));
-    // this.router.navigate(['/auth/login']);
-  }
-
-  public refreshToken(refreshToken: string): Observable<IAuthTokens> {
-    return this.apiService.post(`/auth/refresh-token`, { refreshToken }).pipe(
-      switchMap((data: IAuthTokens) => {
-        this.tokenService.saveToken(data.token);
-        this.tokenService.saveRefreshToken(data.refreshToken);
-        return of(data);
-      })
-    );
   }
 }

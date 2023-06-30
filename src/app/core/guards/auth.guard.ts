@@ -19,22 +19,6 @@ export class AuthGuard implements CanActivate {
   public canActivate(): Observable<boolean> {
     const token = this.tokenService.getToken();
     if (token) {
-      // console.log(token);
-
-      // this.store.select(AuthState.user).subscribe((val) => {
-      //   console.log(val);
-      // });
-      // return this.store.select(AuthState.user).pipe(
-      //   filter<any | null>(Boolean),
-      //   take(1),
-      //   map((user: any | null) => {
-      //     if (user) {
-      //       return true;
-      //     }
-      //     this.router.navigateByUrl('/auth');
-      //     return false;
-      //   })
-      // );
       return of(true);
     }
     this.router.navigateByUrl('/auth');

@@ -16,10 +16,7 @@ export class PublishersComponent {
   ) {}
 
   ngOnInit() {
-    console.log('elo');
-
     this.librarianService.getPublishers().subscribe((val) => {
-      console.log(val);
       this.publishers = val;
     });
   }
