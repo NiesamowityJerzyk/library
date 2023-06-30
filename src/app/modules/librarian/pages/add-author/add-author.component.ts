@@ -46,7 +46,7 @@ export class AddAuthorComponent {
 
   public addAuthor(): void {
     this.librarianService.addAuthor(this.form.value).subscribe((val) => {
-      this.toast.success('Successfully added an author');
+      this.toast.success('Pomyślnie dodano autora');
       this.router.navigate(['/librarian/authors']);
     });
   }

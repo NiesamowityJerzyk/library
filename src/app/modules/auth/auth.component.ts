@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-auth',
@@ -11,7 +10,7 @@ export class AuthComponent implements OnDestroy {
   public src = 'assets/images/books1.jpg';
   private subscription$: Subscription = new Subscription();
 
-  constructor(private router: Router) {}
+  constructor() {}
 
   public ngOnDestroy(): void {
     this.subscription$.unsubscribe();

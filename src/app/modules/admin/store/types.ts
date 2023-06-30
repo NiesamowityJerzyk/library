@@ -3,6 +3,11 @@ export enum UserRolesEnum {
   LIBRARIAN = 2,
   READER = 3,
 }
+export enum CopyStatusesEnum {
+  Disposed = 'Usunięta',
+  Loaned = 'Wypożyczona',
+  Available = 'Dostępna',
+}
 
 export interface IUser {
   email: string;

@@ -62,7 +62,7 @@ export class AddBookComponent {
 
   public addBook(): void {
     this.librarianService.addBook(this.form.value).subscribe((val) => {
-      this.toast.success('Successfully added a book');
+      this.toast.success('Pomyślnie dodano książkę');
       this.router.navigate(['/librarian/books']);
     });
   }

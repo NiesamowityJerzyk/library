@@ -30,7 +30,7 @@ export class AddPublisherComponent {
 
   public addPublisher(): void {
     this.librarianService.addPublisher(this.form.value).subscribe((val) => {
-      this.toast.success('Successfully added a publisher');
+      this.toast.success('Pomyślnie dodano wydawnictwo');
       this.router.navigate(['/librarian/publishers']);
     });
   }

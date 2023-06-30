@@ -57,10 +57,6 @@ export class UsersComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log({
-          userID: user.userID,
-          ...result,
-        });
         this.updateUser({
           userID: user.userID,
           ...result,
@@ -83,22 +79,26 @@ export class UsersComponent {
 
   private updateUser(data: IUser): void {
     this.adminService.updateUser(data).subscribe((val) => {
-      this.toast.success('User successfully updated');
+      this.toast.success('Pomyślnie zaktualizowano użytkownika');
       this.getUsers();
     });
   }
 
   private addUser(data: IUser): void {
     this.adminService.addUser(data).subscribe((val) => {
-      this.toast.success('User successfully added');
+      this.toast.success('Pomyślnie dodano użytkownika');
       this.getUsers();
     });
   }
 
   public removeUser(id: number) {
     this.adminService.removeUser(id).subscribe((val) => {
-      this.toast.success('User successfully removed');
+      this.toast.success('Pomyślnie usunięto użytkownika');
       this.getUsers();
     });
+  }
+
+  public ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
   }
 }

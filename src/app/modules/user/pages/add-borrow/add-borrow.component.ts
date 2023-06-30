@@ -42,9 +42,6 @@ export class AddBorrowComponent {
   ngOnInit() {}
 
   public createBorrow(): void {
-    this.userService.createBorrow().subscribe((val) => {
-      console.log(val);
-    });
-    //to do
+    this.userService.createBorrow().subscribe();
   }
 }

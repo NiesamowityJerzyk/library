@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LibrarianService } from '../../store/service';
-import { IAuthor, IBook, IPublisher } from '../../store/types';
 import {
   UntypedFormBuilder,
   UntypedFormGroup,
@@ -66,8 +65,6 @@ export class AddBorrowComponent {
               value: el.copyID,
             }));
 
-          console.log(bookCopyOptions);
-
           if (bookCopyOptions[0]?.value) {
             this.form.get('copyID')?.patchValue(bookCopyOptions[0].value);
           } else {
@@ -80,8 +77,6 @@ export class AddBorrowComponent {
 
   private getUsers(): void {
     this.adminService.getUsers().subscribe((val) => {
-      console.log(val);
-
       this.userOptions = val
         .filter((el: any) => el.roleName === 'Reader')
         .map((el: IUser) => ({
@@ -92,7 +87,7 @@ export class AddBorrowComponent {
   }
 
   public addBorrow(): void {
-    this.librarianService.addBorrow(this.form.value).subscribe((val) => {
+    this.librarianService.addBorrow(this.form.value).subscribe(() => {
       let statusLoanedId = this.constsService.copyStatusOptions.find(
         (el: IConstOption) => el.title === 'Loaned'
       )?.value;
@@ -104,7 +99,7 @@ export class AddBorrowComponent {
         })
         .subscribe();
 
-      this.toast.success('Successfully added a borrow');
+      this.toast.success('Pomyślnie dodano wypożyczenie');
       this.router.navigate(['/librarian/borrows']);
     });
   }

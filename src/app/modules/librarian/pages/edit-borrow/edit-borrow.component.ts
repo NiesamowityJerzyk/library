@@ -69,14 +69,10 @@ export class EditBorrowComponent {
 
   private getBorrowStatuses(): void {
     this.userService.getBorrowStatuses().subscribe((val) => {
-      console.log(val);
-
       this.borrowsOptions = val.map((el: any) => ({
         title: getBorrowStatusInPolish(el.borrowStatusName),
         value: el.borrowStatusID,
       }));
-
-      console.log(this.borrowsOptions);
     });
   }
 
@@ -104,7 +100,7 @@ export class EditBorrowComponent {
     }
 
     this.librarianService.updateBorrow(form).subscribe((val) => {
-      this.toast.success('Successfully updated a borrow');
+      this.toast.success('Zapisano wypożyczenie');
       this.router.navigate(['/librarian/borrows']);
     });
   }

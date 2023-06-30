@@ -14,16 +14,16 @@
       />
     </mat-form-field>
     <mat-form-field class="w-full">
-      <mat-label>FirstName</mat-label>
-      <input matInput formControlName="firstName" placeholder="First name" />
+      <mat-label>Imię</mat-label>
+      <input matInput formControlName="firstName" placeholder="Imię" />
     </mat-form-field>
     <mat-form-field class="w-full">
-      <mat-label>Last name</mat-label>
-      <input matInput formControlName="lastName" placeholder="Last name" />
+      <mat-label>Nazwisko</mat-label>
+      <input matInput formControlName="lastName" placeholder="Nazwisko" />
     </mat-form-field>
 
     <mat-form-field class="w-full">
-      <mat-label>Role</mat-label>
+      <mat-label>Rola</mat-label>
       <mat-select formControlName="roleId">
         <mat-option
           *ngFor="let role of constsService.roles"
@@ -34,15 +34,13 @@
       </mat-select>
     </mat-form-field>
 
-    <!-- <app-button>Add</app-button> -->
-
     <button
       mat-raised-button
       color="primary"
       class="!w-full"
       [disabled]="form.invalid"
     >
-      Add
+      Dodaj
     </button>
   </div>
 </form>
