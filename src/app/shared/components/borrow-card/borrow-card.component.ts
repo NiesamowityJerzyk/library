@@ -2,6 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TokenService } from 'src/app/core/services/token.service';
 import { IUser, UserRolesEnum } from 'src/app/modules/auth/store/types';
 import { IAuthor, IBook, IBorrow } from 'src/app/modules/librarian/store/types';
+import {
+  getBorrowStatusInPolish,
+  getCopyStatusInPolish,
+} from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-borrow-card',
@@ -17,5 +21,10 @@ export class BorrowCardComponent {
 
   ngOnInit() {
     this.role = UserRolesEnum[this.tokenService.getRole() as any];
+
+    let data = this.borrow;
+    data.borrowStatusName = getBorrowStatusInPolish(data.borrowStatusName);
+    data.copyStatusName = getCopyStatusInPolish(data.copyStatusName);
+    this.borrow = data;
   }
 }

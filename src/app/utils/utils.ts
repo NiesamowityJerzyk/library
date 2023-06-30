@@ -18,6 +18,20 @@ export const getBorrowStatusInPolish = (status: string): string => {
   return '';
 };
 
+export const getCopyStatusInPolish = (status: string): string => {
+  if (status === 'Disposed') {
+    return 'Usunięta';
+  }
+  if (status === 'Loaned') {
+    return 'Wypożyczona';
+  }
+  if (status === 'Available') {
+    return 'Dostępna';
+  }
+
+  return '';
+};
+
 export const prepareParams = (
   params: Record<string, any> | undefined
 ): Record<string, any> => {
